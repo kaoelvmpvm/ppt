@@ -12,7 +12,7 @@
   function safeBackendUrl(value) {
     try {
       const u = new URL(value);
-      if (u.protocol !== 'https:' || u.hostname !== 'script.google.com' || !/^\/macros\/s\/[^/]+\/exec\/?$/.test(u.pathname)) return null;
+      if (u.protocol !== 'https:' || u.hostname !== 'script.google.com' || !/^(?:\/macros\/s|\/a\/macros\/[A-Za-z0-9.-]+\/s)\/[A-Za-z0-9_-]+\/exec\/?$/.test(u.pathname)) return null;
       return u;
     } catch { return null; }
   }
