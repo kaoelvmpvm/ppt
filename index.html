@@ -64,6 +64,171 @@ dialog{width:min(780px,93vw);max-height:82vh;overflow:auto;border:2px solid #c3a
 #controls .more-menu a.share-control{background:#b98b54;color:#10231c;font-weight:750}
 #controls .more-menu a.share-control:hover,#controls .more-menu a.share-control:focus-visible{background:#e8c89a;color:#10231c}
 @media(max-width:650px){#controls{gap:3px;padding:4px 5px}#controls #fullBtn{font-size:12px}#controls #moreBtn{font-size:12px}}
+/* V10 — motion is narrative: restrained entry, workflow sequencing and SVG line tracing. */
+.slide.active{animation:scene-appear .52s cubic-bezier(.18,.7,.3,1) both}
+.slide.active::after{content:"";position:absolute;z-index:6;pointer-events:none;top:0;left:100px;height:3px;width:210px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform-origin:left center;animation:scene-underline 1.15s cubic-bezier(.2,.7,.3,1) both;opacity:.65}
+.slide.active .chapter{animation:move-in-soft .5s .03s both}
+.slide.active h1{animation:move-in-headline .76s cubic-bezier(.17,.8,.3,1) .08s both}
+.slide.active h1 em,.slide.active h1 .accent{animation:headline-glow 1.25s .48s ease-out both}
+/* 1 — headline, tool and a gentle peripheral light, keeping the shovel stationary after entry. */
+.slide.cover .shovel-wrap::before{content:"";position:absolute;pointer-events:none;left:15%;right:15%;top:12%;bottom:8%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(216,173,105,.21),transparent 65%);opacity:0}
+.slide.cover.active .shovel-wrap::before{animation:subtle-light 4.5s ease-in-out 1.1s infinite}
+.slide.cover.active .cover-rule{animation:draw-rule .8s .58s both;transform-origin:left center}
+.slide.cover.active .cover-copy .overline,.slide.cover.active .cover-copy .cover-slogan,.slide.cover.active .cover-copy .cover-caption{animation:move-in-soft .65s both}
+.slide.cover.active .cover-copy .overline{animation-delay:.25s}.slide.cover.active .cover-copy .cover-slogan{animation-delay:.48s}.slide.cover.active .cover-copy .cover-caption{animation-delay:.75s}
+/* 2 — geology comes in as one composition; individual gold pieces shimmer once. */
+.slide.terrain.active .landscape-visual{animation:visual-enter .95s .28s both}
+.slide.terrain.active .landscape-list>div{animation:move-in-soft .53s both}
+.slide.terrain.active .landscape-list>div:nth-child(1){animation-delay:.36s}
+.slide.terrain.active .landscape-list>div:nth-child(2){animation-delay:.57s}
+.slide.terrain.active .landscape-list>div:nth-child(3){animation-delay:.78s}
+.slide.terrain.active .geology-svg g[fill^="url(#geoGold"]{animation:gold-signal 1.25s 1.2s ease-out both}
+/* 3 — road/car existing motion preserved, the two responsibilities appear in sequence. */
+.slide.motion-slide.active .road-area{animation:visual-enter .7s .2s both}
+.slide.motion-slide.active .driver-roles>div:not(.role-divider){animation:move-in-soft .64s both}
+.slide.motion-slide.active .driver-roles>div:first-child{animation-delay:.66s}
+.slide.motion-slide.active .driver-roles>div:last-child{animation-delay:1s}
+.slide.motion-slide.active .role-divider{animation:grow-vertical .7s .65s both}
+.slide.motion-slide.active .footnote{animation:fade-clarify .7s 1.35s both}
+/* 4 — distinct AI and human halves meet; lists cascade instead of fading simultaneously. */
+.slide.split-slide.active .panel-ai{animation:panel-from-left .72s .22s both}
+.slide.split-slide.active .panel-human{animation:panel-from-right .72s .37s both}
+.slide.split-slide.active .split-panels li{animation:move-in-soft .48s both}
+.slide.split-slide.active .split-panels li:nth-child(1){animation-delay:.82s}
+.slide.split-slide.active .split-panels li:nth-child(2){animation-delay:1s}
+.slide.split-slide.active .split-panels li:nth-child(3){animation-delay:1.18s}
+/* 5 — records fan onto the desk, retaining their correct final rotation. */
+.slide.archive.active .archive-quote{animation:move-in-soft .7s .2s both}
+.slide.archive.active .archive-art{animation:visual-enter .7s .25s both}
+.slide.archive.active .doc.a{animation:document-a .76s .56s both}
+.slide.archive.active .doc.b{animation:document-b .76s .7s both}
+.slide.archive.active .doc.c{animation:document-c .76s .84s both}
+/* 6 — symptoms appear in order; central problem resolves only after the list. */
+.slide.issues.active .issue-list .issue-row{animation:move-in-soft .4s both}
+.slide.issues.active .issue-list .issue-row:nth-child(1){animation-delay:.26s}
+.slide.issues.active .issue-list .issue-row:nth-child(2){animation-delay:.40s}
+.slide.issues.active .issue-list .issue-row:nth-child(3){animation-delay:.54s}
+.slide.issues.active .issue-list .issue-row:nth-child(4){animation-delay:.68s}
+.slide.issues.active .issue-list .issue-row:nth-child(5){animation-delay:.82s}
+.slide.issues.active .issue-list .issue-row:nth-child(6){animation-delay:.96s}
+.slide.issues.active .issue-thesis{animation:panel-from-right .75s 1.12s both}
+.slide.issues.active .issue-bar{animation:draw-rule .7s 1.52s both;transform-origin:left center}
+/* 7 — turn disconnected work into a linked process. */
+.slide.flow-slide.active .flow-track.old{animation:fade-clarify .65s .18s both}
+.slide.flow-slide.active .flow-track.new{animation:move-in-soft .67s .6s both}
+.slide.flow-slide.active .flow-track.new .flow-steps-lg>div{animation:step-rise .48s both}
+.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(1){animation-delay:1.05s}
+.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(3){animation-delay:1.3s}
+.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(5){animation-delay:1.55s}
+.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(7){animation-delay:1.8s}
+.slide.flow-slide.active .loop-line svg path{stroke-dasharray:2200;stroke-dashoffset:2200;animation:trace-return 2s 1.55s ease-in-out forwards}
+.slide.flow-slide.active .loop-line span{animation:fade-clarify .55s 2.4s both}
+/* 8 — acknowledge the older approach without striking it out. */
+.slide.contrast-slide.active .pc-old{animation:fade-clarify .65s .28s both}
+.slide.contrast-slide.active .pc-arrow{animation:move-in-soft .57s .65s both}
+.slide.contrast-slide.active .pc-new{animation:panel-from-right .78s .9s both}
+.slide.contrast-slide.active .principle-banner{animation:move-in-soft .6s 1.22s both}
+/* 9 — eight principle nodes radiate, hub stays legible. */
+.slide.ophelia-slide.active .principle-row{animation:move-in-soft .45s both}
+.slide.ophelia-slide.active .principle-row:nth-child(1){animation-delay:.2s}
+.slide.ophelia-slide.active .principle-row:nth-child(2){animation-delay:.31s}
+.slide.ophelia-slide.active .principle-row:nth-child(3){animation-delay:.42s}
+.slide.ophelia-slide.active .principle-row:nth-child(4){animation-delay:.53s}
+.slide.ophelia-slide.active .principle-row:nth-child(5){animation-delay:.64s}
+.slide.ophelia-slide.active .principle-row:nth-child(6){animation-delay:.75s}
+.slide.ophelia-slide.active .principle-row:nth-child(7){animation-delay:.86s}
+.slide.ophelia-slide.active .principle-row:nth-child(8){animation-delay:.97s}
+.slide.ophelia-slide.active .ophelia-hub{animation:visual-enter .75s .48s both}
+.slide.ophelia-slide.active .ophelia-hub svg circle[fill="var(--accent)"]{animation:gold-signal 1.5s 1.12s ease-out both}
+/* 10 — three function modes are distinct, not three synchronized cards. */
+.slide.zones-slide.active .zone-col{animation:step-rise .68s both}
+.slide.zones-slide.active .zone-col:nth-child(1){animation-delay:.28s}
+.slide.zones-slide.active .zone-col:nth-child(2){animation-delay:.55s}
+.slide.zones-slide.active .zone-col:nth-child(3){animation-delay:.82s}
+.slide.zones-slide.active .zone-footer{animation:fade-clarify .65s 1.35s both}
+/* 11 — a six-step process; preserve arrow key as one slide per press. */
+.slide.workflow-slide.active .workflow-step{animation:step-rise .53s both}
+.slide.workflow-slide.active .workflow-step:nth-child(1){animation-delay:.25s}
+.slide.workflow-slide.active .workflow-step:nth-child(3){animation-delay:.49s}
+.slide.workflow-slide.active .workflow-step:nth-child(5){animation-delay:.73s}
+.slide.workflow-slide.active .workflow-step:nth-child(7){animation-delay:.97s}
+.slide.workflow-slide.active .workflow-step:nth-child(9){animation-delay:1.21s}
+.slide.workflow-slide.active .workflow-step:nth-child(11){animation-delay:1.45s}
+.slide.workflow-slide.active .workflow-arrow{animation:fade-clarify .38s both}
+.slide.workflow-slide.active .workflow-arrow:nth-child(2){animation-delay:.42s}
+.slide.workflow-slide.active .workflow-arrow:nth-child(4){animation-delay:.66s}
+.slide.workflow-slide.active .workflow-arrow:nth-child(6){animation-delay:.9s}
+.slide.workflow-slide.active .workflow-arrow:nth-child(8){animation-delay:1.14s}
+.slide.workflow-slide.active .workflow-arrow:nth-child(10){animation-delay:1.38s}
+.slide.workflow-slide.active .human-step{animation:human-highlight .62s 1.2s both}
+.slide.workflow-slide.active .decision-quote{animation:move-in-soft .55s 1.85s both}
+/* 12 — keep, refine and complete are suggested in sequence. */
+.slide.continuity-slide.active .continuity-source{animation:visual-enter .8s .3s both}
+.slide.continuity-slide.active .continuity-path{animation:move-in-soft .6s .85s both}
+.slide.continuity-slide.active .continuity-choices>div{animation:step-rise .55s both}
+.slide.continuity-slide.active .continuity-choices>div:nth-child(1){animation-delay:1.04s}
+.slide.continuity-slide.active .continuity-choices>div:nth-child(2){animation-delay:1.31s}
+.slide.continuity-slide.active .continuity-choices>div:nth-child(3){animation-delay:1.58s}
+.slide.continuity-slide.active .continuity-line{animation:fade-clarify .55s 1.95s both}
+/* 13 — the seven specific domains accumulate, then reveal one shared framework. */
+.slide.topics-slide.active .topic-line{animation:move-in-soft .38s both}
+.slide.topics-slide.active .topic-line:nth-child(1){animation-delay:.20s}
+.slide.topics-slide.active .topic-line:nth-child(2){animation-delay:.33s}
+.slide.topics-slide.active .topic-line:nth-child(3){animation-delay:.46s}
+.slide.topics-slide.active .topic-line:nth-child(4){animation-delay:.59s}
+.slide.topics-slide.active .topic-line:nth-child(5){animation-delay:.72s}
+.slide.topics-slide.active .topic-line:nth-child(6){animation-delay:.85s}
+.slide.topics-slide.active .topic-line:nth-child(7){animation-delay:.98s}
+.slide.topics-slide.active .topics-aside{animation:panel-from-right .72s 1.1s both}
+/* 14 — safety limits have deliberate, sequential emphasis. */
+.slide.guard-slide.active .guard-symbol{animation:safety-signal .8s .27s both}
+.slide.guard-slide.active .guard-rule{animation:move-in-soft .58s both}
+.slide.guard-slide.active .guard-rule:nth-child(1){animation-delay:.5s}
+.slide.guard-slide.active .guard-rule:nth-child(2){animation-delay:.82s}
+.slide.guard-slide.active .guard-rule:nth-child(3){animation-delay:1.14s}
+.slide.guard-slide.active .guard-strap{animation:fade-clarify .55s 1.63s both}
+/* 15 — a shared knowledge core splits toward three distinct implementation paths. */
+.slide.branch-slide.active .branch-core{animation:visual-enter .75s .26s both}
+.slide.branch-slide.active .branch-connector{animation:branch-open .7s .7s both;transform-origin:top center}
+.slide.branch-slide.active .branch-targets>div{animation:step-rise .58s both}
+.slide.branch-slide.active .branch-targets>div:nth-child(1){animation-delay:1.0s}
+.slide.branch-slide.active .branch-targets>div:nth-child(2){animation-delay:1.22s}
+.slide.branch-slide.active .branch-targets>div:nth-child(3){animation-delay:1.44s}
+.slide.branch-slide.active .branch-note{animation:fade-clarify .6s 1.8s both}
+/* 16 — lines draw the feedback loop in the finished, tested SVG geometry. */
+.slide.final-slide.active .final-copy p{animation:move-in-soft .72s .22s both}
+.slide.final-slide.active .final-copy blockquote{animation:step-rise .8s 1s both}
+.slide.final-slide.active .cycle-flow-svg{animation:visual-enter .8s .28s both}
+.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(1){stroke-dasharray:45;stroke-dashoffset:45;animation:trace-connection .5s 1.0s linear forwards}
+.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(2){stroke-dasharray:45;stroke-dashoffset:45;animation:trace-connection .5s 1.55s linear forwards}
+.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(3){stroke-dasharray:650;stroke-dashoffset:650;animation:trace-connection 1.05s 2.1s ease-in-out forwards}
+/* Focused keyframes: animation settles; only one ambient glow continues on the cover. */
+@keyframes scene-appear{from{opacity:.55}to{opacity:1}}
+@keyframes scene-underline{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:.65}}
+@keyframes move-in-soft{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
+@keyframes move-in-headline{from{opacity:0;transform:translateY(23px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes headline-glow{from{text-shadow:0 0 16px rgba(220,178,113,.43)}to{text-shadow:0 0 0 transparent}}
+@keyframes draw-rule{from{transform:scaleX(0);opacity:.2}to{transform:scaleX(1);opacity:1}}
+@keyframes subtle-light{0%,100%{opacity:.10}50%{opacity:.58}}
+@keyframes visual-enter{from{opacity:0;translate:0 10px;filter:brightness(.8)}to{opacity:1;translate:0 0;filter:brightness(1)}}
+@keyframes gold-signal{0%{filter:drop-shadow(0 0 0 rgba(249,218,142,0))}45%{filter:drop-shadow(0 0 8px rgba(249,218,142,.8))}100%{filter:drop-shadow(0 0 0 rgba(249,218,142,0))}}
+@keyframes fade-clarify{from{opacity:0}to{opacity:1}}
+@keyframes grow-vertical{from{transform:scaleY(0);opacity:.3}to{transform:scaleY(1);opacity:1}}
+@keyframes panel-from-left{from{opacity:0;transform:translateX(-27px)}to{opacity:1;transform:translateX(0)}}
+@keyframes panel-from-right{from{opacity:0;transform:translateX(27px)}to{opacity:1;transform:translateX(0)}}
+@keyframes document-a{from{opacity:0;transform:translate(36px,25px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(-11deg)}}
+@keyframes document-b{from{opacity:0;transform:translate(12px,24px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(5deg)}}
+@keyframes document-c{from{opacity:0;transform:translate(-25px,20px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(13deg)}}
+@keyframes step-rise{from{opacity:0;transform:translateY(18px) scale(.988)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes trace-return{from{stroke-dashoffset:2200}to{stroke-dashoffset:0}}
+@keyframes safety-signal{0%{opacity:0;transform:scale(.78)}65%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes branch-open{from{opacity:0;transform:scaleY(.1)}to{opacity:1;transform:scaleY(1)}}
+@keyframes human-highlight{from{opacity:0;transform:translateY(16px);box-shadow:0 0 0 0 rgba(192,144,72,.3)}to{opacity:1;transform:translateY(0);box-shadow:0 0 0 0 transparent}}
+@keyframes trace-connection{to{stroke-dashoffset:0}}
+/* The motion setting and OS accessibility settings take precedence. */
+body.motion-off .slide,body.motion-off .slide *,body.motion-off .slide::before,body.motion-off .slide::after{animation:none!important;transition:none!important;}
+@media(prefers-reduced-motion:reduce){.slide,.slide *,.slide::before,.slide::after{animation:none!important;transition:none!important}}
+@media print{.slide,.slide *, .slide::before,.slide::after{animation:none!important;transition:none!important}}
 </style></head><body><main id="frame"><section class="slide dark cover active" aria-label="投影片 1"><p class="chapter">序章 · 造鏟與掘金</p><h1>我們造鏟，<br><em>夥伴掘金。</em></h1>
 <div class="cover-layout"><div class="cover-copy"><p class="overline">HEALTH PROMOTION / FIELD NOTES</p><div class="cover-rule"></div><p class="cover-slogan">AI 接住重複工作，<br>人保有教育判斷。</p><p class="cover-caption">健促 AI 健多多　·　健康促進學校的共創實踐</p></div><div class="shovel-wrap"><svg class="shovel-svg" viewBox="0 0 650 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" >
 <defs><linearGradient id="metalA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7dfb1"/><stop offset=".52" stop-color="#ba8c52"/><stop offset="1" stop-color="#816347"/></linearGradient></defs>
@@ -158,6 +323,7 @@ dialog{width:min(780px,93vw);max-height:82vh;overflow:auto;border:2px solid #c3a
 <div id="moreMenu" class="more-menu" role="group" aria-label="更多簡報功能" hidden>
 <button id="overviewBtn" type="button">投影片總覽</button>
 <button id="notesBtn" type="button" aria-pressed="false">講者備忘</button>
+<button id="motionBtn" type="button" aria-pressed="false">關閉動畫</button>
 <button id="cleanBtn" type="button">隱藏控制列</button>
 <button id="printBtn" type="button">列印／PDF</button>
 <a class="share-control" id="strategyShareLink" href="./share/" target="_blank" rel="noopener noreferrer" aria-label="開啟策略共創分享區">策略分享 ↗</a>
@@ -182,6 +348,15 @@ document.addEventListener('pointerdown',e=>{if(!$('controls').contains(e.target)
 $('prev').onclick=()=>{closeMore();go(index-1)};
 $('next').onclick=()=>{closeMore();go(index+1)};
 $('notesBtn').onclick=()=>{closeMore();toggleNotes()};
+function setMotionDisabled(disabled){
+ document.body.classList.toggle('motion-off',disabled);
+ $('motionBtn').textContent=disabled?'開啟動畫':'關閉動畫';
+ $('motionBtn').setAttribute('aria-pressed',String(disabled));
+ try {localStorage.setItem('dodo-motion-off', disabled?'1':'0')}catch(e){}
+}
+try {if(localStorage.getItem('dodo-motion-off')==='1')setMotionDisabled(true)}catch(e){}
+$('motionBtn').onclick=()=>{setMotionDisabled(!document.body.classList.contains('motion-off'));closeMore()};
+
 $('overviewBtn').onclick=()=>{closeMore();overview()};
 $('fullBtn').onclick=()=>{closeMore();fullscreen()};
 $('cleanBtn').onclick=()=>{closeMore();document.body.classList.toggle('clean')};
