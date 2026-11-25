@@ -3,104 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#12241f">
-  <meta name="description" content="健促 AI 健多多策略共創分享區：依學校探索健康促進策略、分享執行要領與行政檢核。">
+  <meta name="theme-color" content="#142b25">
+  <meta name="description" content="健多多健康促進策略共創分享區：貼上健多多分析成果，依學校交流落地策略。">
   <title>策略共創分享區｜健促 AI 健多多</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
   <script src="./demo-data.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="shell topbar-inner">
-      <a class="brand" href="../" aria-label="返回健多多演講簡報"><span class="brand-mark" aria-hidden="true">✳</span><span><b>健促 AI 健多多</b><small>HEALTH DODO · 共創共學</small></span></a>
-      <nav aria-label="網站導覽"><a href="../">演講簡報</a><a href="https://kaoelvmpvm.github.io/HealthDODO_Example/" target="_blank" rel="noopener noreferrer">示範校情</a></nav>
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <a class="identity" href="../" aria-label="返回健多多演講簡報"><span class="brand-mark">✳</span><span><strong>健促 AI 健多多</strong><small>健康促進策略共創分享區</small></span></a>
+      <nav aria-label="主要導覽"><a href="#explore">瀏覽成果</a><a href="#contribute">分享策略</a><a class="nav-plain" href="../">演講簡報 ↗</a></nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="shell hero-layout">
-        <div>
-          <div class="overline"><span class="line"></span> HEALTH PROMOTION · FIELD NOTES</div>
-          <h1>每所學校，<br><em>都有值得分享的礦脈。</em></h1>
-          <p class="hero-description">中央造鏟，第一線夥伴實踐。把你從健多多分析中選定的策略留下來，讓其他學校看見可操作的做法、判斷依據與執行提醒。</p>
-          <div class="hero-buttons"><button id="goto-compose" class="button button-gold" type="button">分享一項策略 <span aria-hidden="true">↗</span></button><button id="goto-gallery" class="button button-quiet" type="button">瀏覽各校成果 <span aria-hidden="true">↓</span></button></div>
-        </div>
-        <div class="hero-graphic" aria-hidden="true">
-          <svg viewBox="0 0 530 390" role="img" aria-label="三層地景與金礦的抽象示意">
-            <defs><pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#dbc295" opacity=".4"/></pattern></defs>
-            <rect x="14" y="26" width="502" height="340" rx="8" fill="#20352d" stroke="#647967" opacity=".7"/>
-            <path d="M27 148Q100 126 180 149T350 145T502 147V354H27Z" fill="#b19772"/>
-            <path d="M27 202Q110 222 206 199T376 213T502 200V354H27Z" fill="#765f4d"/>
-            <path d="M27 281Q110 252 204 275T382 268T502 282V354H27Z" fill="#394d41"/>
-            <path d="M27 148Q100 126 180 149T350 145T502 147V354H27Z" fill="url(#dots)"/>
-            <path d="M27 142Q100 120 180 143T350 139T502 141" fill="none" stroke="#9abc9d" stroke-width="8"/>
-            <g fill="#e5ba70" stroke="#ffe0a0" stroke-width="3"><path d="m111 248 23-16 35 12 8 24-25 18-28-9Z"/><path d="m327 305 20-14 31 10 11 23-22 20-28-11Z"/><path d="m404 226 14-10 19 8 7 18-16 10-18-8Z"/></g>
-            <g transform="translate(358 34) rotate(31)"><path d="M-24 20V0q0-22 24-22T24 0v20" fill="none" stroke="#e6bb7b" stroke-width="13" stroke-linecap="round"/><path d="M0 20v174" stroke="#dbab73" stroke-width="12" stroke-linecap="round"/><path d="M-33 188Q0 200 33 188l-6 47Q16 270 0 287q-21-20-29-52Z" fill="#e6ba77" stroke="#ffddb0" stroke-width="3"/></g>
-          </svg>
-          <span>FIELDWORK  /  STRATEGY ATLAS</span>
-        </div>
+    <section class="intro container" aria-labelledby="intro-title">
+      <div class="intro-copy">
+        <div class="eyebrow">FIELD NOTES / HEALTH PROMOTION</div>
+        <h1 id="intro-title">選一項策略，<br><em>讓好做法被看見。</em></h1>
+        <p>不需要重新整理 AI 的表格，也不用尋找對應欄位。只要選定一項值得分享的策略，把健多多的兩段分析成果直接貼上。</p>
+        <div class="intro-actions"><a href="#contribute" class="action action-gold">我要分享策略 <span aria-hidden="true">↗</span></a><a href="#explore" class="action action-outline">查看各校成果</a></div>
+      </div>
+      <div class="intro-aside" aria-label="分享步驟">
+        <div class="step"><b>01</b><span>填學校與活動名稱</span></div>
+        <div class="step"><b>02</b><span>整段貼上兩份分析</span></div>
+        <div class="step"><b>03</b><span>送出後，依學校交流</span></div>
+        <div class="intro-line">好的工具值得共享，最後的決定仍屬於人。</div>
       </div>
     </section>
 
-    <div class="shell status-wrapper"><div id="service-status" class="service-status" role="status" aria-live="polite">正在檢查分享平台狀態…</div></div>
-
-    <section id="gallery" class="section shell" aria-labelledby="gallery-title">
-      <div class="section-heading"><div><p class="eyebrow">01 · THE ATLAS</p><h2 id="gallery-title">學校策略地圖</h2><p>點選學校，看看同一套健多多如何被不同校情轉化成具體行動。</p></div><span class="section-number" id="school-count">— 所學校</span></div>
-      <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search-schools" type="search" placeholder="搜尋學校或策略名稱" autocomplete="off" aria-label="搜尋學校或策略名稱"></label><button id="refresh" class="button button-outline" type="button">重新整理 ↻</button></div>
-      <div id="gallery-message" class="gallery-message" aria-live="polite"></div>
-      <div id="schools" class="schools-grid" aria-label="學校策略列表"></div>
-      <div class="gallery-foot"><p>學校卡片僅顯示策略摘要；點入後可閱讀完整執行要領與行政檢核。</p><button id="load-more" class="button button-outline" type="button" hidden>載入更多策略</button></div>
+    <section class="collection" id="explore" aria-labelledby="collection-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">01 / SHARED STRATEGIES</p><h2 id="collection-title">各校策略成果</h2><p>點選學校，查看該校分享的策略與完整執行建議。</p></div><div class="collection-stats"><strong id="school-total">—</strong><span>所學校分享</span></div></div>
+        <div class="filters">
+          <label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><input id="search-box" type="search" placeholder="搜尋學校、活動名稱或議題" aria-label="搜尋學校、活動名稱或議題"></label>
+          <label class="select-label"><span class="sr-only">篩選議題</span><select id="topic-filter"><option value="">全部議題</option><option>視力保健</option><option>口腔保健</option><option>全民健保</option><option>健康體位</option><option>菸檳防制</option><option>全面性教育</option><option>正向心理健康促進</option><option>其他</option></select></label>
+          <button id="refresh-btn" class="quiet-button" type="button">重新整理 ↻</button>
+        </div>
+        <div id="connection-state" class="connection-state" role="status" aria-live="polite"></div>
+        <div id="schools" class="school-grid" aria-label="學校策略成果"></div>
+        <p id="empty-message" class="empty" hidden>沒有符合條件的成果，請更換搜尋詞。</p>
+        <div class="demo-caption">尚未連接資料庫時，網站只會展示標示為「示範案例」的內容，不會假裝已有人投稿。</div>
+      </div>
     </section>
 
-    <section id="compose" class="section compose-section" aria-labelledby="compose-title">
-      <div class="shell compose-grid">
-        <div class="compose-aside"><p class="eyebrow">02 · LEAVE YOUR FIELD NOTE</p><h2 id="compose-title">留下你選定的<br><em>一項策略。</em></h2><p>分享的不是 AI 所產生的所有文字，而是你看過、判斷過，認為值得讓其他夥伴參考的一項具體做法。</p><div class="aside-rule"></div><div class="aside-callout"><b>建議流程</b><ol><li>輸入代表學校及策略基本資料</li><li>填寫落地執行要領</li><li>補上 HPS 與 Ophelia 的成敗關鍵</li><li>預覽後公開分享</li></ol></div><p class="privacy-note">請勿填入個人姓名、學生個別健康資訊、電話、家庭資料或未經授權的敏感內容。學校名稱與發布內容將公開供其他學員閱讀。</p></div>
-        <div class="compose-panel">
-          <div class="form-intro"><div><span class="small-kicker">策略提交表</span><h3>一份分享，兩張工作表</h3></div><span class="step-badge">4 個區塊</span></div>
-          <form id="strategy-form" novalidate>
-            <fieldset>
-              <legend><span>01</span> 代表學校與活動資訊</legend>
-              <div class="form-grid two"><label class="field"><span>代表學校 <i>*</i></span><input name="school_name" required maxlength="80" placeholder="例如：示範國中"><small>以完整校名填寫，系統會自動彙整同校分享。</small></label><label class="field"><span>健康促進議題</span><select name="topic"><option value="正向心理健康促進">正向心理健康促進</option><option value="視力保健">視力保健</option><option value="口腔保健">口腔保健</option><option value="全民健保">全民健保</option><option value="健康體位">健康體位</option><option value="菸檳防制">菸檳防制</option><option value="全面性教育">全面性教育</option><option value="其他">其他</option></select></label></div>
-              <div class="form-grid two"><label class="field"><span>活動代碼</span><input name="activity_code" maxlength="24" placeholder="A01"></label><label class="field"><span>活動名稱 <i>*</i></span><input name="activity_name" required maxlength="120" placeholder="我的壓力紅綠燈"></label></div>
-              <label class="field"><span>活動執行說明 <i>*</i></span><textarea name="activity_description" required rows="4" maxlength="3000" placeholder="說明活動目標、如何進行，以及學生實際會做什麼。"></textarea></label>
-              <div class="form-grid two"><label class="field"><span>建議對象</span><textarea name="target_audience" rows="2" maxlength="600" placeholder="七至九年級學生，先由各年級1班試行。"></textarea></label><label class="field"><span>建議時間</span><textarea name="suggested_time" rows="2" maxlength="600" placeholder="健康教育課1節，班會5分鐘複習。"></textarea></label></div>
-              <div class="form-grid two"><label class="field"><span>關鍵意見編碼</span><input name="key_opinions" maxlength="600" placeholder="A-2-1、B-2-2、D-2-3"></label><label class="field"><span>成效指標編碼</span><input name="indicators" maxlength="600" placeholder="I2、I7-1；長期 I1"></label></div>
-            </fieldset>
-            <fieldset>
-              <legend><span>02</span> 落地執行要領</legend>
-              <label class="field"><span>HPS 六大範疇中特別需要注意的事項</span><input name="hps_focus" maxlength="300" placeholder="例如：個人健康生活技能（健康教學與活動）"><small>請填重點範疇及具體執行提醒。</small></label>
-              <label class="field"><span>HPS 判定依據與執行重點</span><textarea name="hps_evidence" rows="3" maxlength="2000" placeholder="說明原因、關聯的關鍵意見與校本數據。"></textarea></label>
-              <label class="field"><span>Ophelia 八大原則中特別需要注意的事項</span><input name="ophelia_focus" maxlength="300" placeholder="例如：在地需求診斷"><small>請填重點原則及具體執行提醒。</small></label>
-              <label class="field"><span>Ophelia 判定依據與執行重點</span><textarea name="ophelia_evidence" rows="3" maxlength="2000" placeholder="說明哪些真實需求、群體意見支持這個判斷。"></textarea></label>
-            </fieldset>
-            <fieldset>
-              <legend><span>03</span> 成敗關鍵及行政檢核</legend>
-              <div class="comparison-header"><span>檢核面向</span><span>HPS 六大範疇</span><span>Ophelia 八大原則</span></div>
-              <div class="comparison-line"><div>成敗關鍵提醒</div><label class="field"><span class="sr-only">HPS 成敗關鍵提醒</span><textarea name="hps_success" rows="3" maxlength="1500" placeholder="學生是否真正練習？"></textarea></label><label class="field"><span class="sr-only">Ophelia 成敗關鍵提醒</span><textarea name="ophelia_success" rows="3" maxlength="1500" placeholder="內容是否反映校情？"></textarea></label></div>
-              <div class="comparison-line"><div>常見問題</div><label class="field"><span class="sr-only">HPS 常見問題</span><textarea name="hps_pitfalls" rows="3" maxlength="1500"></textarea></label><label class="field"><span class="sr-only">Ophelia 常見問題</span><textarea name="ophelia_pitfalls" rows="3" maxlength="1500"></textarea></label></div>
-              <div class="comparison-line"><div>建議搭配</div><label class="field"><span class="sr-only">HPS 建議搭配</span><textarea name="hps_collab" rows="3" maxlength="1500"></textarea></label><label class="field"><span class="sr-only">Ophelia 建議搭配</span><textarea name="ophelia_collab" rows="3" maxlength="1500"></textarea></label></div>
-              <div class="comparison-line"><div>行政檢核問句</div><label class="field"><span class="sr-only">HPS 行政檢核問句</span><textarea name="hps_check" rows="3" maxlength="1500"></textarea></label><label class="field"><span class="sr-only">Ophelia 行政檢核問句</span><textarea name="ophelia_check" rows="3" maxlength="1500"></textarea></label></div>
-            </fieldset>
-            <fieldset>
-              <legend><span>04</span> 預覽與發布</legend>
-              <p class="form-support">請確認內容已經由你檢視，不含個人資料；發布後將依學校歸類，供所有參與者開啟閱讀。</p>
-              <label class="consent"><input id="consent" type="checkbox"><span>我已確認內容可公開分享，且沒有學生或教職員的可識別個人資料。</span></label>
-              <div class="form-buttons"><button id="preview-button" class="button button-outline" type="button">預覽分享內容</button><button id="submit-button" class="button button-gold" type="submit">確認發布策略 ↗</button></div>
-              <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
-            </fieldset>
-          </form>
+    <section class="submit-section" id="contribute" aria-labelledby="submit-title">
+      <div class="container submit-layout">
+        <div class="submit-aside"><p class="eyebrow">02 / SHARE YOUR STRATEGY</p><h2 id="submit-title">只要兩段，<br><em>完整保留你的分析。</em></h2><p>不論健多多用表格、條列或段落呈現，都可以整段貼入 Google 表單。</p>
+          <div class="paste-guide"><div><span>第一段</span><strong>（一）落地執行要領表</strong><small>包含活動執行說明、建議對象、時間、關鍵意見、成效指標、HPS 與 Ophelia。</small></div><div><span>第二段</span><strong>（二）成敗關鍵及行政檢核</strong><small>包含成敗關鍵、常見問題、建議搭配及行政檢核問句。</small></div></div>
+          <p class="privacy">公開分享前，請確認文字中沒有學生、家長、教師的姓名、個別健康資訊或其他可識別個人的資料。</p>
+        </div>
+        <div class="form-wrapper"><div class="form-head"><div><span class="eyebrow">GOOGLE FORMS</span><h3>策略投稿表單</h3></div><span class="field-count">5 個主要欄位</span></div>
+          <div id="form-connected" hidden><p class="form-intro">學校／議題／活動名稱＋兩段完整貼文。送出後返回本頁，按「重新整理」即可查看已公開成果。</p><a id="form-external" class="action action-gold" href="#" target="_blank" rel="noopener noreferrer">開啟 Google 投稿表單 ↗</a><div class="embed-header"><span>也可直接在此填寫</span><button id="toggle-embed" type="button" class="quiet-button" aria-expanded="false">展開表單 ↓</button></div><div id="form-embed-panel" hidden><iframe id="form-frame" loading="lazy" title="健多多策略分享 Google 表單" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+          <div id="form-unconnected" class="connect-placeholder"><span class="not-connected-dot"></span><strong>Google 表單尚未完成連線</strong><p>分享介面與案例瀏覽已備妥。管理者完成 Google 表單與資料讀取服務的部署後，這裡會出現正式投稿入口。</p><a href="./SETUP.md" target="_blank" rel="noopener noreferrer">查看管理者設定說明 ↗</a></div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="shell footer-inner"><p>HEALTH DODO / FIELD NOTES · 中央造鏟，夥伴掘金</p><p>公開策略分享 · 不蒐集個人身分資訊</p></div></footer>
+  <footer><div class="container footer-inner"><span>HEALTH DODO · 共創共學</span><span>我們造鏟，夥伴掘金。</span></div></footer>
 
-  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title"><div class="dialog-top"><span class="eyebrow" id="detail-eyebrow">SHARED FIELD NOTE</span><button class="dialog-close" data-close="detail-dialog" type="button" aria-label="關閉策略內容">✕</button></div><div id="detail-content"></div></dialog>
-  <dialog id="school-dialog" class="school-dialog" aria-labelledby="school-dialog-title"><div class="dialog-top"><span class="eyebrow">SCHOOL COLLECTION</span><button class="dialog-close" data-close="school-dialog" type="button" aria-label="關閉學校成果">✕</button></div><h2 id="school-dialog-title"></h2><p class="school-intro">點選策略可查看完整落地執行要領與行政檢核。</p><div id="school-items" class="school-items"></div></dialog>
-</body>
-</html>
+  <dialog id="school-dialog" class="school-dialog" aria-labelledby="school-dialog-title"><div class="dialog-bar"><span class="eyebrow">SCHOOL COLLECTION</span><button type="button" class="close-button" data-close="school-dialog" aria-label="關閉學校頁">✕</button></div><h2 id="school-dialog-title"></h2><p class="dialog-description">選擇一項活動，閱讀完整的策略內容。</p><div id="school-strategies" class="school-strategies"></div></dialog>
+  <dialog id="strategy-dialog" class="strategy-dialog" aria-labelledby="strategy-title"><div class="dialog-bar"><span class="eyebrow">STRATEGY DETAILS</span><button type="button" class="close-button" data-close="strategy-dialog" aria-label="關閉策略頁">✕</button></div><div id="strategy-details"></div></dialog>
+</body></html>

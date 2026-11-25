@@ -1,228 +1,158 @@
 "use strict";
 (() => {
   const $ = (id) => document.getElementById(id);
-  const form = $('strategy-form');
-  const status = $('service-status');
-  const formStatus = $('form-status');
-  const schoolCount = $('school-count');
-  const schoolGrid = $('schools');
-  const galleryMessage = $('gallery-message');
-  const detailDialog = $('detail-dialog');
-  const schoolDialog = $('school-dialog');
-  const submitButton = $('submit-button');
-  const previewButton = $('preview-button');
-  const loadMore = $('load-more');
-  const PAGE_SIZE = 200;
-  const fields = [
-    'school_name', 'topic', 'activity_code', 'activity_name', 'activity_description',
-    'target_audience','suggested_time','key_opinions','indicators',
-    'hps_focus','hps_evidence','ophelia_focus','ophelia_evidence',
-    'hps_success','ophelia_success','hps_pitfalls','ophelia_pitfalls',
-    'hps_collab','ophelia_collab','hps_check','ophelia_check'
-  ];
-  const cfg = window.HEALTH_DODO_SHARE_CONFIG || {};
-  const dbReady = /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test((cfg.supabaseUrl||'').trim()) && /^sb_publishable_|^eyJ/.test((cfg.supabasePublishableKey||'').trim());
-  let db = null;
-  let posts = [];
-  let filteredSchools = [];
-  let nextPage = 0;
-  let hasMore = false;
-  let demo = !dbReady;
-  let isBusy = false;
+  const cfg = window.DODO_SHARE_CONFIG || {};
+  const demo = (window.DODO_DEMO_RECORDS || []).map(x => ({...x, demo: true}));
+  let records = demo;
+  let liveConnected = false;
+  let lastRequest = 0;
+  const clean = (s) => String(s == null ? '' : s).trim();
+  const topics = ['視力保健','口腔保健','全民健保','健康體位','菸檳防制','全面性教育','正向心理健康促進','其他'];
 
-  function ntext(text) { return document.createTextNode(String(text ?? '')); }
-  function node(tag, cls, text) {
+  function safeBackendUrl(value) {
+    try {
+      const u = new URL(value);
+      if (u.protocol !== 'https:' || u.hostname !== 'script.google.com' || !/^\/macros\/s\/[^/]+\/exec\/?$/.test(u.pathname)) return null;
+      return u;
+    } catch { return null; }
+  }
+  function make(tag, cls, content) {
     const el = document.createElement(tag);
     if (cls) el.className = cls;
-    if (text !== undefined) el.textContent = String(text ?? '');
+    if (content !== undefined) el.textContent = String(content);
     return el;
   }
-  function setService(mode, message) {
-    status.className = 'service-status' + (mode ? ' ' + mode : '');
-    status.textContent = message;
+  function labelDemo(el, isDemo) {
+    if (isDemo) el.append(make('span','demo-badge','示範案例'));
   }
-  function setFormMessage(message, type='') {
-    formStatus.textContent = message;
-    formStatus.className = 'form-status' + (type ? ' ' + type : '');
+  function filtered() {
+    const term = clean($('search-box').value).toLocaleLowerCase();
+    const topic = $('topic-filter').value;
+    return records.filter(r => (!topic || r.topic === topic) && (!term || [r.school,r.title,r.topic,r.execution].some(v => clean(v).toLocaleLowerCase().includes(term))));
   }
-  function schoolKey(name) { return String(name || '').normalize('NFKC').replace(/[\s\u3000]+/g,'').toLocaleLowerCase('zh-TW'); }
-  function safeValue(v) { return (v && String(v).trim()) || '尚未填寫'; }
-  function formData() {
-    const d = new FormData(form);
-    return Object.fromEntries(fields.map((f) => [f, String(d.get(f) || '').trim()]));
-  }
-  function formatDate(s) {
-    if (!s) return '';
-    const d = new Date(s);
-    return Number.isNaN(d.getTime()) ? '' : new Intl.DateTimeFormat('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'Asia/Taipei'}).format(d);
-  }
-  function groupSchools(query='') {
-    const map = new Map();
-    for (const p of posts) {
-      const key = schoolKey(p.school_name);
-      if (!key) continue;
-      if (!map.has(key)) map.set(key,{key,name:p.school_name,posts:[]});
-      map.get(key).posts.push(p);
+  function groupSchools(data) {
+    const groups = new Map();
+    for (const r of data) {
+      const name = clean(r.school) || '未填學校';
+      if (!groups.has(name)) groups.set(name, []);
+      groups.get(name).push(r);
     }
-    const schools = [...map.values()].sort((a,b)=>{
-      const da = a.posts[0]?.created_at||''; const dbb = b.posts[0]?.created_at||'';
-      return dbb.localeCompare(da) || a.name.localeCompare(b.name,'zh-Hant');
-    });
-    const q = query.trim().toLocaleLowerCase('zh-TW');
-    return q ? schools.filter(s=>[s.name,...s.posts.flatMap(p=>[p.activity_name,p.activity_code,p.topic])].some(v=>String(v||'').toLocaleLowerCase('zh-TW').includes(q))) : schools;
+    return [...groups.entries()].sort((a,b) => a[0].localeCompare(b[0],'zh-Hant'));
   }
-  function renderSchools() {
-    const q = $('search-schools').value;
-    filteredSchools = groupSchools(q);
-    const overall = groupSchools();
-    schoolCount.textContent = `${overall.length} 所學校 · ${posts.length} 項策略`;
-    schoolGrid.replaceChildren();
-    galleryMessage.textContent = demo ? '以下為示範資料，非實際投稿。啟用資料庫後，此處將顯示各校公開分享的內容。' : (hasMore ? '已載入部分分享；可按「載入更多策略」取得其他資料。' : '點選學校查看所有已載入的策略。');
-    loadMore.hidden = demo || !hasMore;
-    if (!filteredSchools.length) {
-      const empty = node('div','empty');
-      empty.append(node('strong',null, q ? '找不到符合條件的分享' : '目前還沒有策略分享'));
-      empty.append(node('p',null,q?'請更換學校名稱或策略關鍵字。':'歡迎成為第一位分享健康促進策略的夥伴。'));
-      schoolGrid.append(empty);
-      return;
+  function render() {
+    const groups = groupSchools(filtered());
+    $('school-total').textContent = String(groups.length).padStart(2,'0');
+    const parent = $('schools');
+    parent.replaceChildren();
+    $('empty-message').hidden = groups.length > 0;
+    for (const [school,items] of groups) {
+      const b = make('button','school-card');
+      b.type = 'button';
+      const top = make('div','school-card-top');
+      top.append(make('span','school-symbol','✳'),make('span','school-count',`${items.length} 項策略`));
+      b.append(top, make('h3','',school));
+      const topicSet = [...new Set(items.map(x=>x.topic).filter(Boolean))];
+      b.append(make('p','',topicSet.join(' · ') || '健康促進策略'));
+      labelDemo(b,items.every(x=>x.demo));
+      b.append(make('span','school-more','查看策略 ↗'));
+      b.addEventListener('click',()=>openSchool(school,items));
+      parent.append(b);
     }
-    filteredSchools.forEach((school,i)=>{
-      const b = node('button','school-card'); b.type='button';
-      b.setAttribute('aria-label',`開啟 ${school.name} 的 ${school.posts.length} 項策略`);
-      const top=node('div','school-card-top');
-      top.append(node('span','school-index',String(i+1).padStart(2,'0')));
-      top.append(node('span','school-count',`${school.posts.length} 項策略`));
-      const mid=node('div');mid.append(node('h3',null,school.name));
-      mid.append(node('p','school-topics',[...new Set(school.posts.map(x=>x.topic).filter(Boolean))].slice(0,3).join(' · ')));
-      const foot=node('div','school-card-bottom');foot.append(node('span',null,`最近分享 ${formatDate(school.posts[0].created_at)||'示範'}`));foot.append(node('span',null,'查看成果 ↗'));
-      b.append(top,mid,foot); b.addEventListener('click',()=>openSchool(school.key)); schoolGrid.append(b);
+  }
+  function showDialog(dialog) { if (!dialog.open) dialog.showModal(); }
+  function openSchool(school, items) {
+    $('school-dialog-title').textContent = school;
+    const parent = $('school-strategies');
+    parent.replaceChildren();
+    for (const r of items) {
+      const btn = make('button','strategy-list-row'); btn.type='button';
+      const head = make('div','strategy-list-heading');
+      head.append(make('strong','',r.title),make('span','arrow','↗'));
+      btn.append(head,make('span','strategy-list-meta',r.topic || '健康促進'));
+      labelDemo(btn,r.demo);
+      btn.addEventListener('click',()=>{ $('school-dialog').close(); openStrategy(r); });
+      parent.append(btn);
+    }
+    showDialog($('school-dialog'));
+  }
+  function appendSection(parent,title,content) {
+    const section = make('section','detail-section');
+    section.append(make('h3','',title),make('div','detail-text',content || '未提供'));
+    parent.append(section);
+  }
+  function openStrategy(r) {
+    const parent=$('strategy-details');parent.replaceChildren();
+    parent.append(make('p','detail-topic',r.topic));
+    parent.append(make('h2','detail-title',r.title));
+    const meta=make('p','detail-meta',r.school + (r.demo ? ' · 虛構示範案例' : ' · 學員分享'));
+    parent.append(meta);
+    appendSection(parent,'（一）落地執行要領表',r.execution);
+    appendSection(parent,'（二）成敗關鍵及行政檢核',r.evaluation);
+    const copy=make('button','action action-outline copy-btn','複製完整策略');copy.type='button';
+    copy.onclick=async()=>{try{await navigator.clipboard.writeText(`${r.school}\n${r.title}\n\n（一）落地執行要領表\n${r.execution}\n\n（二）成敗關鍵及行政檢核\n${r.evaluation}`);copy.textContent='已複製 ✓';}catch{copy.textContent='無法自動複製，請手動選取文字。';}};
+    parent.append(copy);showDialog($('strategy-dialog'));
+  }
+  function setupForm(url) {
+    let u;
+    try { u = new URL(url); } catch { return; }
+    if (u.protocol !== 'https:' || (u.hostname !== 'docs.google.com' && u.hostname !== 'forms.gle')) return;
+    $('form-connected').hidden=false;$('form-unconnected').hidden=true;
+    $('form-external').href=url;
+    let embedUrl='';
+    if (u.hostname==='docs.google.com' && u.pathname.includes('/forms/')) {
+      u.searchParams.set('embedded','true'); embedUrl=u.href;
+    }
+    $('toggle-embed').hidden = !embedUrl;
+    $('toggle-embed').onclick=()=>{
+      const panel=$('form-embed-panel');const open=panel.hidden;
+      panel.hidden=!open;$('toggle-embed').setAttribute('aria-expanded',String(open));
+      $('toggle-embed').textContent=open?'收合表單 ↑':'展開表單 ↓';
+      if (open&&!$('form-frame').src) $('form-frame').src=embedUrl;
+    };
+  }
+  function normalizeRecord(r) {
+    const school=clean(r.school).slice(0,120),title=clean(r.title).slice(0,180);
+    if(!school||!title) return null;
+    return {id:clean(r.id),school,topic:topics.includes(r.topic)?r.topic:'其他',title,execution:clean(r.execution).slice(0,50000),evaluation:clean(r.evaluation).slice(0,50000),date:clean(r.date),demo:false};
+  }
+  function jsonp(url) {
+    return new Promise((resolve,reject)=>{
+      const fname='dodoJsonp'+Math.random().toString(36).slice(2);
+      const script=document.createElement('script');
+      let done=false;
+      const timer=window.setTimeout(()=>settle(new Error('連線逾時')),14000);
+      function settle(error,data){if(done)return;done=true;clearTimeout(timer);delete window[fname];script.remove();error?reject(error):resolve(data);}
+      window[fname]=(obj)=>settle(null,obj);
+      const u=new URL(url);u.searchParams.set('callback',fname);u.searchParams.set('t',String(Date.now()));
+      script.src=u.href;script.async=true;script.onerror=()=>settle(new Error('無法連線'));document.head.append(script);
     });
   }
-  function openSchool(key) {
-    const s = groupSchools().find(x=>x.key===key);
-    if (!s) return;
-    $('school-dialog-title').textContent = s.name;
-    const area=$('school-items');area.replaceChildren();
-    s.posts.forEach(p=>{
-      const b=node('button','school-entry');b.type='button';
-      const left=node('div');left.append(node('small',null,`${p.topic||'健康促進'} ｜ ${p.activity_code ? p.activity_code+' ｜ ':''}${formatDate(p.created_at)||'示範資料'}`));left.append(node('b',null,p.activity_name));
-      b.append(left,node('span','arrow','↗'));
-      b.addEventListener('click',()=>{schoolDialog.close();openDetail(p)});
-      area.append(b);
-    });
-    schoolDialog.showModal();
-  }
-  function row(label,value) {
-    const r=node('div','detail-row');r.append(node('div','head',label),node('div','value',safeValue(value)));return r;
-  }
-  function matrixCell(text,cls='') {return node('div',cls,safeValue(text));}
-  function openDetail(p,preview=false) {
-    $('detail-eyebrow').textContent = preview ? 'PREVIEW · 尚未發布' : (p.demo ? 'DEMO · 示範策略' : 'PUBLISHED · 策略分享');
-    const content=$('detail-content');content.replaceChildren();
-    const head=node('div','detail-heading');
-    const code=p.activity_code?`${p.activity_code} · `:'';
-    head.append(node('span','detail-tag',p.topic||'健康促進'),node('span','detail-tag',p.school_name||'學校未填'));
-    const h=node('h2');h.id='detail-title';h.textContent=code+p.activity_name;head.append(h);
-    head.append(node('p',null,preview?'請確認內容，關閉預覽後再按下發布。':`分享日期：${formatDate(p.created_at)||'示範資料'}`));content.append(head);
-    content.append(node('h3','table-caption','（一）落地執行要領表'));
-    const t=node('div','detail-table');
-    for(const [label,key] of [
-      ['活動名稱','activity_name'],['活動執行說明','activity_description'],['建議對象','target_audience'],
-      ['建議時間','suggested_time'],['關鍵意見','key_opinions'],['成效指標','indicators'],
-      ['HPS 六大範疇中特別需要注意的事項','hps_focus'],['HPS 判定依據與執行重點','hps_evidence'],
-      ['Ophelia 八大原則中特別需要注意的事項','ophelia_focus'],['Ophelia 判定依據與執行重點','ophelia_evidence']
-    ])t.append(row(label,key==='activity_name' ? code+p.activity_name:p[key]));
-    content.append(t);
-    content.append(node('h3','table-caption','（二）成敗關鍵及行政檢核'));
-    const m=node('div','detail-matrix');
-    for(const x of ['注意事項','HPS 六大範疇','Ophelia 八大原則'])m.append(matrixCell(x,'matrix-head'));
-    for(const [label,a,b] of [
-      ['成敗關鍵提醒','hps_success','ophelia_success'],['常見問題','hps_pitfalls','ophelia_pitfalls'],
-      ['建議搭配','hps_collab','ophelia_collab'],['行政檢核問句','hps_check','ophelia_check']
-    ])m.append(matrixCell(label,'matrix-label'),matrixCell(p[a]),matrixCell(p[b]));
-    content.append(m);
-    content.append(node('p','detail-disclaimer',p.demo?'本頁為虛構教學示範，不代表真實學校投稿。':'內容由分享者自行提供，代表學校與資料均未經網站驗證；請依實際校情自行判讀。'));
-    detailDialog.showModal();
-  }
-  async function loadPage(reset=false) {
-    if(!db || isBusy) return;
-    isBusy=true;
-    $('refresh').disabled=true;
-    loadMore.disabled=true;
+  async function refresh() {
+    const n=++lastRequest;
+    const backend=safeBackendUrl(cfg.googleAppsScriptUrl);
+    if(!backend){liveConnected=false;records=demo;render();$('connection-state').textContent='展示模式｜Google 表單尚未連接。以下為虛構示範案例。';return;}
+    $('connection-state').textContent='正在讀取各校分享…';
     try {
-      if(reset){nextPage=0;posts=[];hasMore=false;}
-      const {data,error}=await db.from('strategy_shares').select('*').order('created_at',{ascending:false}).range(nextPage,nextPage+PAGE_SIZE-1);
-      if(error) throw error;
-      const fresh=Array.isArray(data)?data:[];
-      const existing=new Set(posts.map(p=>p.id));
-      posts.push(...fresh.filter(x=>!existing.has(x.id)));
-      nextPage+=fresh.length;
-      hasMore=fresh.length===PAGE_SIZE;
-      setService('',`共用資料庫已連線。所有學員可瀏覽策略成果，發布內容會儲存在跨裝置共用的資料庫中。`);
-      renderSchools();
-    } catch(e){
-      setService('error','資料庫連線或讀取失敗：目前無法確認最新分享。請檢查設定與網路連線。');
-      galleryMessage.textContent=`讀取失敗：${e.message||'未知錯誤'}`;
-      renderSchools();
-    } finally{isBusy=false;$('refresh').disabled=false;loadMore.disabled=false;}
-  }
-  async function publish(e) {
-    e.preventDefault();
-    if(!db){setFormMessage('尚未啟用共用資料庫，暫時只能預覽，不能將策略公開發布。','error');return;}
-    if(!form.reportValidity()) {setFormMessage('請先完成必填欄位。','error');return;}
-    if(!$('consent').checked){setFormMessage('請先確認公開分享及個人資料聲明。','error');return;}
-    const data=formData();
-    if(data.school_name.length<2 || data.activity_name.length<2 || data.activity_description.length<12){setFormMessage('學校與活動名稱至少2字，活動執行說明至少12字。','error');return;}
-    if(isBusy)return;
-    isBusy=true;submitButton.disabled=true;submitButton.textContent='發布中…';setFormMessage('正在儲存策略，請勿重複提交。');
-    try{
-      const {error}=await db.from('strategy_shares').insert(data);
-      if(error)throw error;
-      form.reset();
-      setFormMessage('策略已成功儲存在共用資料庫，現在可以在學校策略地圖中找到它。','success');
-      await loadAfterPublish();
-      $('gallery').scrollIntoView({behavior:'smooth'});
-    }catch(err){setFormMessage(`發布失敗，資料尚未保存：${err.message||'未知錯誤'}`,'error');}
-    finally{isBusy=false;submitButton.disabled=false;submitButton.textContent='確認發布策略 ↗';}
-  }
-  async function loadAfterPublish(){
-    // 避免重入，發布完成後直接重取第一頁；新稿會排在最前。
-    const {data,error}=await db.from('strategy_shares').select('*').order('created_at',{ascending:false}).range(0,PAGE_SIZE-1);
-    if(error){setService('error','發布成功，但重新載入清單失敗。可使用「重新整理」稍後再試。');return;}
-    posts=data||[];nextPage=posts.length;hasMore=posts.length===PAGE_SIZE;renderSchools();
-  }
-  function init() {
-    $('goto-compose').addEventListener('click',()=>$('compose').scrollIntoView({behavior:'smooth'}));
-    $('goto-gallery').addEventListener('click',()=>$('gallery').scrollIntoView({behavior:'smooth'}));
-    $('search-schools').addEventListener('input',renderSchools);
-    $('refresh').addEventListener('click',()=>loadPage(true));
-    loadMore.addEventListener('click',()=>loadPage(false));
-    $('preview-button').addEventListener('click',()=>{
-      if(!form.reportValidity()){setFormMessage('請先填寫學校、活動名稱與執行說明，再預覽。','error');return;}
-      openDetail({...formData(),created_at:new Date().toISOString()},true);
-    });
-    form.addEventListener('submit',publish);
-    document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>$(btn.dataset.close).close()));
-    [detailDialog,schoolDialog].forEach(d=>d.addEventListener('click',(e)=>{if(e.target===d)d.close()}));
-    if(!dbReady){
-      demo=true;
-      posts=Array.isArray(window.HEALTH_DODO_DEMO_STRATEGIES)?window.HEALTH_DODO_DEMO_STRATEGIES:[];
-      setService('demo','目前為示範模式：可點選學校檢視範例、填寫並預覽策略。尚未連接共用資料庫，因此不能公開投稿。');
-      submitButton.disabled=true;submitButton.title='須由管理者完成 Supabase 資料庫設定後才可發布';
-      $('refresh').disabled=true;
-      renderSchools();
-      return;
+      const data=await jsonp(backend.href);
+      if(n!==lastRequest)return;
+      if(!data||data.ok!==true||!Array.isArray(data.records))throw new Error(data?.error || '回傳格式不正確');
+      liveConnected=true;
+      records=data.records.map(normalizeRecord).filter(Boolean);
+      // 沒有真實投稿時明確呈現示範案例，不把它混進真實成果數量。
+      if(records.length===0)records=demo;
+      if(data.formUrl) setupForm(data.formUrl);
+      $('connection-state').textContent=data.records.length?`已連接 Google 表單｜目前收錄 ${data.records.length} 項策略`:'已連接 Google 表單｜目前尚無正式投稿，以下為虛構示範案例。';
+      render();
+    } catch(e) {
+      if(n!==lastRequest)return;
+      liveConnected=false;records=demo;render();
+      $('connection-state').textContent='暫時無法取得 Google 表單資料，現僅顯示示範案例。';
     }
-    if(!window.supabase || typeof window.supabase.createClient!=='function') {
-      setService('error','目前無法載入資料庫連線元件，請確認網路或聯繫網站管理者。');
-      submitButton.disabled=true;
-      renderSchools();
-      return;
-    }
-    db=window.supabase.createClient(cfg.supabaseUrl.trim().replace(/\/$/,''),cfg.supabasePublishableKey.trim(),{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
-    demo=false;
-    setService('','正在連接共用資料庫…');
-    loadPage(true);
   }
-  init();
+  $('search-box').addEventListener('input',render);
+  $('topic-filter').addEventListener('change',render);
+  $('refresh-btn').addEventListener('click',refresh);
+  document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>$(btn.dataset.close).close()));
+  for(const id of ['school-dialog','strategy-dialog']) $(id).addEventListener('click',e=>{ if(e.target===$(id))$(id).close(); });
+  refresh();
 })();
