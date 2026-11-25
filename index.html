@@ -51,6 +51,19 @@ dialog{width:min(780px,93vw);max-height:82vh;overflow:auto;border:2px solid #c3a
 .final-visual.cycle-visual { position:relative; height:455px; overflow:visible; }
 .cycle-flow-svg { display:block; width:680px; height:455px; max-width:100%; overflow:visible; }
 #controls .share-control{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;background:#d5ab73;color:#15251e;border-radius:3px;font-size:14px;font-weight:700;white-space:nowrap;text-decoration:none}#controls .share-control:hover,#controls .share-control:focus-visible{background:#e8c89a;outline:2px solid #e7bc80;outline-offset:1px}@media(max-width:700px){#controls .share-control{padding:6px 8px;font-size:12px;min-height:32px}}.page-footer .speaker-credit{display:inline-block;margin-left:24px;font-weight:750;font-size:16px;letter-spacing:.04em;color:var(--accent);white-space:nowrap}
+
+/* V9 - compact navigation; secondary actions open in an upward menu */
+#controls{gap:6px;padding:6px 8px;border-radius:7px;max-width:calc(100vw - 16px)}
+#controls .more-wrap{position:relative;display:flex;align-items:center}
+#controls #moreBtn{white-space:nowrap;display:flex;align-items:center;gap:7px}
+#controls #moreBtn[aria-expanded="true"]{background:#45624f;outline:1px solid #d9ad72}
+#controls .more-menu{position:absolute;right:0;bottom:calc(100% + 12px);width:210px;max-width:calc(100vw - 24px);padding:8px;z-index:1100;background:#172b23;border:1px solid #738876;border-radius:9px;box-shadow:0 14px 34px #000b;display:grid;gap:5px}
+#controls .more-menu[hidden]{display:none!important}
+#controls .more-menu button,#controls .more-menu a.share-control{display:flex;align-items:center;justify-content:flex-start;width:100%;box-sizing:border-box;text-align:left;padding:11px 13px;min-height:42px;font-size:15px;margin:0;border-radius:4px;color:#f1f0e4;text-decoration:none;background:#273f34}
+#controls .more-menu button:hover,#controls .more-menu button:focus-visible,#controls .more-menu a.share-control:hover,#controls .more-menu a.share-control:focus-visible{background:#476351;outline:2px solid #dfb777;outline-offset:-1px}
+#controls .more-menu a.share-control{background:#b98b54;color:#10231c;font-weight:750}
+#controls .more-menu a.share-control:hover,#controls .more-menu a.share-control:focus-visible{background:#e8c89a;color:#10231c}
+@media(max-width:650px){#controls{gap:3px;padding:4px 5px}#controls #fullBtn{font-size:12px}#controls #moreBtn{font-size:12px}}
 </style></head><body><main id="frame"><section class="slide dark cover active" aria-label="投影片 1"><p class="chapter">序章 · 造鏟與掘金</p><h1>我們造鏟，<br><em>夥伴掘金。</em></h1>
 <div class="cover-layout"><div class="cover-copy"><p class="overline">HEALTH PROMOTION / FIELD NOTES</p><div class="cover-rule"></div><p class="cover-slogan">AI 接住重複工作，<br>人保有教育判斷。</p><p class="cover-caption">健促 AI 健多多　·　健康促進學校的共創實踐</p></div><div class="shovel-wrap"><svg class="shovel-svg" viewBox="0 0 650 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" >
 <defs><linearGradient id="metalA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7dfb1"/><stop offset=".52" stop-color="#ba8c52"/><stop offset="1" stop-color="#816347"/></linearGradient></defs>
@@ -135,7 +148,22 @@ dialog{width:min(780px,93vw);max-height:82vh;overflow:auto;border:2px solid #c3a
   <text x="350" y="447" fill="#d9ad70" font-size="23" letter-spacing="4">共創 · 共學 · 精進</text>
   <text x="64" y="225" fill="#c3d0c5" font-size="17" transform="rotate(-90 64 225)">精進下一版</text>
 </g>
-</svg></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>16 / 16</b></div></section></main><nav id="controls" aria-label="簡報控制"><button id="prev" aria-label="上一頁">←</button><span id="counter"></span><button id="next" aria-label="下一頁">→</button><button id="overviewBtn">總覽</button><button id="notesBtn" aria-pressed="false">講稿</button><button id="fullBtn">全螢幕</button><button id="cleanBtn" class="wide-control">隱藏</button><button id="printBtn" class="wide-control">列印</button><a class="share-control" id="strategyShareLink" href="./share/" target="_blank" rel="noopener noreferrer" aria-label="開啟策略共創分享區">策略分享 ↗</a></nav><div id="progress"></div><aside id="notes" hidden><h2>講者備忘</h2><p id="noteText"></p></aside><dialog id="overview"><h2>16 頁簡報總覽</h2><div id="overviewList"></div><button id="overviewClose">關閉</button></dialog><script id="notesData" type="application/json">["先用鏟子的隱喻開場。此工具並非代替各校決定，而是讓現場夥伴有更省力的專業工具。", "造鏟=中央、使用鏟子=第一線、土地=校情、黃金=親師生的健康與福祉；比喻不是商業出售。", "把開場的鏟子和自動駕駛連起來：運算與操作可以交給系統，目的與責任不能。", "重點不是AI替代教師，而是為老師留出時間理解學生與家長、作價值判斷。", "這頁讓承辦人代入：即使留下文件，當年為什麼選擇活動、遇過什麼問題，未必有被妥善記下。", "這六項是健多多欲回應的常見工作情境，不是全國盛行率調查。左側可邀現場舉手回應。", "兩個流程形成清晰對照。重要的是從資料到決策再到評估形成循環。", "請提醒參與者：不是為了八大原則而新增活動，是用原則問我們的流程有沒有反映真實需求。", "八大原則用語依健康促進學校研習用語。AI不能憑空生成真實利害關係人的意見。", "健多多示範、實作、精進三個功能區。不要讓這頁變成產品型錄；要說清楚進場條件不同。", "第5步是人為決策的停靠點，課程應鼓勵教師說明自己為什麼選擇某一策略。", "健多多分析現有計畫，優先協助執行品質、分眾支持和評量，而不是要求額外辦新活動。", "七項健康促進議題均已設計健多多版本；共用工作流程，仍保有每項議題的內容專業。", "使用之前，務必強調學生資料保護與生成內容的實證限制；AI的便利不能掩蓋責任。", "若原有入口停用，核心設計可轉成Gem、Plugin及Skill。此為規劃，而非三種服務皆已上線。", "最後回到開頭隱喻：工具不是要取代判斷，而是形成中央與地方的共創循環。"]</script><script>
+</svg></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>16 / 16</b></div></section></main><nav id="controls" aria-label="簡報控制">
+<button id="prev" aria-label="上一頁" title="上一頁（←）">←</button>
+<span id="counter" aria-live="polite"></span>
+<button id="next" aria-label="下一頁" title="下一頁（→）">→</button>
+<button id="fullBtn" title="全螢幕（F）">全螢幕</button>
+<div class="more-wrap">
+<button id="moreBtn" aria-haspopup="true" aria-controls="moreMenu" aria-expanded="false" title="更多功能">更多 <span aria-hidden="true">▴</span></button>
+<div id="moreMenu" class="more-menu" role="group" aria-label="更多簡報功能" hidden>
+<button id="overviewBtn" type="button">投影片總覽</button>
+<button id="notesBtn" type="button" aria-pressed="false">講者備忘</button>
+<button id="cleanBtn" type="button">隱藏控制列</button>
+<button id="printBtn" type="button">列印／PDF</button>
+<a class="share-control" id="strategyShareLink" href="./share/" target="_blank" rel="noopener noreferrer" aria-label="開啟策略共創分享區">策略分享 ↗</a>
+</div>
+</div>
+</nav><div id="progress"></div><aside id="notes" hidden><h2>講者備忘</h2><p id="noteText"></p></aside><dialog id="overview"><h2>16 頁簡報總覽</h2><div id="overviewList"></div><button id="overviewClose">關閉</button></dialog><script id="notesData" type="application/json">["先用鏟子的隱喻開場。此工具並非代替各校決定，而是讓現場夥伴有更省力的專業工具。", "造鏟=中央、使用鏟子=第一線、土地=校情、黃金=親師生的健康與福祉；比喻不是商業出售。", "把開場的鏟子和自動駕駛連起來：運算與操作可以交給系統，目的與責任不能。", "重點不是AI替代教師，而是為老師留出時間理解學生與家長、作價值判斷。", "這頁讓承辦人代入：即使留下文件，當年為什麼選擇活動、遇過什麼問題，未必有被妥善記下。", "這六項是健多多欲回應的常見工作情境，不是全國盛行率調查。左側可邀現場舉手回應。", "兩個流程形成清晰對照。重要的是從資料到決策再到評估形成循環。", "請提醒參與者：不是為了八大原則而新增活動，是用原則問我們的流程有沒有反映真實需求。", "八大原則用語依健康促進學校研習用語。AI不能憑空生成真實利害關係人的意見。", "健多多示範、實作、精進三個功能區。不要讓這頁變成產品型錄；要說清楚進場條件不同。", "第5步是人為決策的停靠點，課程應鼓勵教師說明自己為什麼選擇某一策略。", "健多多分析現有計畫，優先協助執行品質、分眾支持和評量，而不是要求額外辦新活動。", "七項健康促進議題均已設計健多多版本；共用工作流程，仍保有每項議題的內容專業。", "使用之前，務必強調學生資料保護與生成內容的實證限制；AI的便利不能掩蓋責任。", "若原有入口停用，核心設計可轉成Gem、Plugin及Skill。此為規劃，而非三種服務皆已上線。", "最後回到開頭隱喻：工具不是要取代判斷，而是形成中央與地方的共創循環。"]</script><script>
 const slides=[...document.querySelectorAll('.slide')];const notes=JSON.parse(document.querySelector('#notesData').textContent);const $=id=>document.getElementById(id);let index=0;let safe=false;
 function size(){document.documentElement.style.setProperty('--scale',Math.min(window.innerWidth/1600,window.innerHeight/900));}
 function go(n){const i=Math.max(0,Math.min(slides.length-1,n));index=i;slides.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',String(i!==j));});$('counter').textContent=`${i+1} / ${slides.length}`;$('prev').disabled=i===0;$('next').disabled=i===slides.length-1;$('noteText').textContent=notes[i];$('progress').style.width=`${(i+1)/slides.length*100}%`;document.title=`${i+1}/${slides.length}｜健多多·我們造鏟，夥伴掘金`;
@@ -143,9 +171,25 @@ function go(n){const i=Math.max(0,Math.min(slides.length-1,n));index=i;slides.fo
 function toggleNotes(){$('notes').hidden=!$('notes').hidden;$('notesBtn').setAttribute('aria-pressed',String(!$('notes').hidden));}
 function overview(){$('overview').showModal();}
 function fullscreen(){if(document.fullscreenElement){document.exitFullscreen?.()}else document.documentElement.requestFullscreen?.().catch(()=>{});}
-$('prev').onclick=()=>go(index-1);$('next').onclick=()=>go(index+1);$('notesBtn').onclick=toggleNotes;$('overviewBtn').onclick=overview;$('fullBtn').onclick=fullscreen;$('cleanBtn').onclick=()=>document.body.classList.toggle('clean');$('printBtn').onclick=()=>window.print();$('overviewClose').onclick=()=>$('overview').close();
+function closeMore(){ $('moreMenu').hidden=true; $('moreBtn').setAttribute('aria-expanded','false'); }
+function toggleMore(){
+ const open=$('moreMenu').hidden;
+ $('moreMenu').hidden=!open;
+ $('moreBtn').setAttribute('aria-expanded',String(open));
+}
+$('moreBtn').onclick=(e)=>{e.stopPropagation();toggleMore();};
+document.addEventListener('pointerdown',e=>{if(!$('controls').contains(e.target))closeMore();});
+$('prev').onclick=()=>{closeMore();go(index-1)};
+$('next').onclick=()=>{closeMore();go(index+1)};
+$('notesBtn').onclick=()=>{closeMore();toggleNotes()};
+$('overviewBtn').onclick=()=>{closeMore();overview()};
+$('fullBtn').onclick=()=>{closeMore();fullscreen()};
+$('cleanBtn').onclick=()=>{closeMore();document.body.classList.toggle('clean')};
+$('printBtn').onclick=()=>{closeMore();window.print()};
+$('strategyShareLink').addEventListener('click',closeMore);
+$('overviewClose').onclick=()=>$('overview').close();
 slides.forEach((s,i)=>{const b=document.createElement('button');b.textContent=`${String(i+1).padStart(2,'0')}　${s.querySelector('h1').innerText.replace(/\n/g,' ')}`;b.onclick=()=>{go(i);$('overview').close();};$('overviewList').appendChild(b);});
-window.addEventListener('resize',size);window.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.target.closest('input,textarea,select'))return;const k=e.key.toLowerCase();if(['arrowright','arrowdown','pagedown',' ','enter'].includes(k)){e.preventDefault();go(index+1);}else if(['arrowleft','arrowup','pageup','backspace'].includes(k)){e.preventDefault();go(index-1);}else if(k==='home'){e.preventDefault();go(0);}else if(k==='end'){e.preventDefault();go(slides.length-1);}else if(k==='n')toggleNotes();else if(k==='o')overview();else if(k==='f')fullscreen();else if(k==='h')document.body.classList.toggle('clean');});
+window.addEventListener('resize',size);window.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMore();return;}if(document.querySelector('dialog[open]'))return;if(e.target.closest('input,textarea,select'))return;const k=e.key.toLowerCase();if(['arrowright','arrowdown','pagedown',' ','enter'].includes(k)){e.preventDefault();go(index+1);}else if(['arrowleft','arrowup','pageup','backspace'].includes(k)){e.preventDefault();go(index-1);}else if(k==='home'){e.preventDefault();go(0);}else if(k==='end'){e.preventDefault();go(slides.length-1);}else if(k==='n')toggleNotes();else if(k==='o')overview();else if(k==='f')fullscreen();else if(k==='h')document.body.classList.toggle('clean');});
 let touch=null;document.getElementById('frame').addEventListener('touchstart',e=>{if(e.target.closest('button,a'))return;touch=e.changedTouches[0].clientX;},{passive:true});document.getElementById('frame').addEventListener('touchend',e=>{if(touch===null)return;const d=e.changedTouches[0].clientX-touch;touch=null;if(Math.abs(d)>55)go(index+(d<0?1:-1));},{passive:true});
 size();go((Number(location.hash.slice(1))||1)-1);
 </script></body></html>
