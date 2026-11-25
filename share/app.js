@@ -95,20 +95,19 @@
   function setupForm(url) {
     let u;
     try { u = new URL(url); } catch { return; }
-    if (u.protocol !== 'https:' || (u.hostname !== 'docs.google.com' && u.hostname !== 'forms.gle')) return;
-    $('form-connected').hidden=false;$('form-unconnected').hidden=true;
-    $('form-external').href=url;
-    let embedUrl='';
-    if (u.hostname==='docs.google.com' && u.pathname.includes('/forms/')) {
-      u.searchParams.set('embedded','true'); embedUrl=u.href;
+    if (u.protocol !== 'https:' || !['docs.google.com','forms.gle'].includes(u.hostname)) return;
+    if (u.hostname==='docs.google.com' && !u.pathname.includes('/forms/')) return;
+    // 直接顯示已連結 Google Sheets 的 Google 表單，不再開啟其他分頁。
+    u.searchParams.set('embedded','true');
+    $('form-connected').hidden=false;
+    $('form-unconnected').hidden=true;
+    const frame=$('form-frame');
+    if(frame.dataset.loadedUrl!==u.href){
+      frame.dataset.loadedUrl=u.href;
+      $('embed-loading').hidden=false;
+      frame.addEventListener('load',()=>{ $('embed-loading').hidden=true; },{once:true});
+      frame.src=u.href;
     }
-    $('toggle-embed').hidden = !embedUrl;
-    $('toggle-embed').onclick=()=>{
-      const panel=$('form-embed-panel');const open=panel.hidden;
-      panel.hidden=!open;$('toggle-embed').setAttribute('aria-expanded',String(open));
-      $('toggle-embed').textContent=open?'收合表單 ↑':'展開表單 ↓';
-      if (open&&!$('form-frame').src) $('form-frame').src=embedUrl;
-    };
   }
   function normalizeRecord(r) {
     const school=clean(r.school).slice(0,120),title=clean(r.title).slice(0,180);
@@ -152,6 +151,10 @@
   $('search-box').addEventListener('input',render);
   $('topic-filter').addEventListener('change',render);
   $('refresh-btn').addEventListener('click',refresh);
+  $('view-submissions').addEventListener('click',()=>{ 
+    $('explore').scrollIntoView({behavior:'smooth',block:'start'});
+    refresh();
+  });
   document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>$(btn.dataset.close).close()));
   for(const id of ['school-dialog','strategy-dialog']) $(id).addEventListener('click',e=>{ if(e.target===$(id))$(id).close(); });
   refresh();
