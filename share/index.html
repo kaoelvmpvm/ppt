@@ -52,12 +52,20 @@
 
     <section class="submit-section" id="contribute" aria-labelledby="submit-title">
       <div class="container submit-layout">
-        <div class="submit-aside"><p class="eyebrow">02 / SHARE YOUR STRATEGY</p><h2 id="submit-title">只要兩段，<br><em>完整保留你的分析。</em></h2><p>不論健多多用表格、條列或段落呈現，都可以整段貼入 Google 表單。</p>
+        <div class="submit-aside"><p class="eyebrow">02 / SHARE YOUR STRATEGY</p><h2 id="submit-title">只要兩段，<br><em>完整保留你的分析。</em></h2><p>不論健多多用表格、條列或段落呈現，都能直接在下方貼上，並在本頁完成送出。</p>
           <div class="paste-guide"><div><span>第一段</span><strong>（一）落地執行要領表</strong><small>包含活動執行說明、建議對象、時間、關鍵意見、成效指標、HPS 與 Ophelia。</small></div><div><span>第二段</span><strong>（二）成敗關鍵及行政檢核</strong><small>包含成敗關鍵、常見問題、建議搭配及行政檢核問句。</small></div></div>
           <p class="privacy">公開分享前，請確認文字中沒有學生、家長、教師的姓名、個別健康資訊或其他可識別個人的資料。</p>
         </div>
-        <div class="form-wrapper"><div class="form-head"><div><span class="eyebrow">GOOGLE FORMS</span><h3>策略投稿表單</h3></div><span class="field-count">5 個主要欄位</span></div>
-          <div id="form-connected" hidden><p class="form-intro">學校／議題／活動名稱＋兩段完整貼文。送出後返回本頁，按「重新整理」即可查看已公開成果。</p><a id="form-external" class="action action-gold" href="#" target="_blank" rel="noopener noreferrer">開啟 Google 投稿表單 ↗</a><div class="embed-header"><span>也可直接在此填寫</span><button id="toggle-embed" type="button" class="quiet-button" aria-expanded="false">展開表單 ↓</button></div><div id="form-embed-panel" hidden><iframe id="form-frame" loading="lazy" title="健多多策略分享 Google 表單" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+        <div class="form-wrapper"><div class="form-head"><div><span class="eyebrow">SHARE YOUR STRATEGY</span><h3>在這裡直接投稿</h3></div><span class="field-count">5 個主要欄位</span></div>
+          <div id="form-connected" hidden>
+  <p class="form-intro">直接在下方填寫「代表學校、健康促進議題、活動名稱」，再把兩份分析全文貼上。送出後資料會儲存至 Google 回覆資料庫，不必離開本網站。</p>
+  <div class="embedded-form-shell" id="form-embed-panel">
+    <div class="embed-header"><span>策略分享填寫區</span><small>共 5 個主要欄位 · 可直接貼上完整分析</small></div>
+    <p id="embed-loading" class="embed-loading" role="status">正在載入投稿欄位…</p>
+    <iframe id="form-frame" title="健多多策略分享填寫區" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <div class="submitted-hint"><p>完成送出後，點選「更新分享成果」，即可查看各校最新提交的策略。若表單顯示帳號驗證畫面，請管理者檢查網域填寫權限。</p><button type="button" class="action action-outline" id="view-submissions">更新分享成果 ↻</button></div>
+</div>
           <div id="form-unconnected" class="connect-placeholder"><span class="not-connected-dot"></span><strong>Google 表單尚未完成連線</strong><p>分享介面與案例瀏覽已備妥。管理者完成 Google 表單與資料讀取服務的部署後，這裡會出現正式投稿入口。</p><a href="./SETUP.md" target="_blank" rel="noopener noreferrer">查看管理者設定說明 ↗</a></div>
         </div>
       </div>
