@@ -113,49 +113,48 @@ $("timerReset").addEventListener("click",()=>{
  $("timerStatus").textContent="已重設為20分鐘";
 });
 paintClock();
-let roster=[],picked=[],spinning=false;
-$("rosterInput").value=Array.from({length:30},(_,i)=>String(i+1).padStart(2,"0")).join("\n");
-function rosterState(){
- $("draw").disabled=roster.length===0||spinning||picked.length===roster.length;
- $("rosterStatus").textContent=roster.length?
- "名單"+roster.length+"人｜已抽"+picked.length+"人｜剩餘"+(roster.length-picked.length)+"人":
- "請先設定真實名單；預填01～30僅為示範";
-}
-function openRoster(){closeMore();$("rosterError").textContent="";$("rosterDialog").showModal()}
-$("openRoster").addEventListener("click",openRoster);
-$("rosterMenu").addEventListener("click",openRoster);
-$("rosterCancel").addEventListener("click",()=>$("rosterDialog").close());
-$("rosterApply").addEventListener("click",()=>{
- let list=$("rosterInput").value.split(/[\r\n,，;；]+/).map(v=>v.trim()).filter(Boolean);
- let unique=Array.from(new Set(list));
- if(!unique.length||unique.length>80||unique.some(x=>x.length>20)){
-  $("rosterError").textContent="請輸入1～80人，每人一行，單筆最多20字。";return;
+/* 本份講演使用固定抽選池；候選名單不顯示在投影片或輪播動畫。 */
+const candidateSeats=Object.freeze(["5","13","9","27","20","1","24"]);
+let picked=[],spinning=false;
+function drawState(){
+ $("draw").disabled=spinning||picked.length>=candidateSeats.length;
+ if(picked.length>=candidateSeats.length){
+  $("rosterStatus").textContent="本輪抽選已完成，按「重新開始」可再次抽選。";
+ }else if(picked.length){
+  $("rosterStatus").textContent="已完成一次抽選，可繼續抽選下一位。";
+ }else{
+  $("rosterStatus").textContent="按「開始抽人」隨機邀請一位同學。";
  }
- roster=unique;picked=[];$("drawResult").textContent="準備抽選";
- rosterState();$("rosterDialog").close();
-});
-$("rosterReset").addEventListener("click",()=>{
- if(!window.confirm("清除本輪抽選紀錄？名單不變。"))return;
- picked=[];$("drawResult").textContent="準備抽選";rosterState();
+}
+$("resetDraw").addEventListener("click",()=>{
+ if(spinning)return;
+ if(picked.length&&!window.confirm("確定重新開始抽選？本輪已抽出的結果將重設。"))return;
+ picked=[];$("drawResult").textContent="準備抽選";drawState();
 });
 $("draw").addEventListener("click",()=>{
  if(spinning)return;
- const available=roster.filter(v=>!picked.includes(v));
+ const available=candidateSeats.filter(v=>!picked.includes(v));
  if(!available.length)return;
- spinning=true;rosterState();
- const el=$("drawResult");el.classList.add("shuffling");
- let roulette=setInterval(()=>el.textContent=available[Math.floor(Math.random()*available.length)],75);
+ spinning=true;drawState();
+ const output=$("drawResult");output.classList.add("shuffling");
+ output.textContent="？";
+ /* 只呈現中性抽選動畫，不輪播未被抽出的候選座號。 */
+ const animation=["？","✦","？","◆"];
+ let step=0;
+ const roulette=setInterval(()=>{output.textContent=animation[step++%animation.length]},95);
  setTimeout(()=>{
   clearInterval(roulette);
-  let i=Math.floor(Math.random()*available.length);
-  if(window.crypto&&crypto.getRandomValues){
-   let rand=new Uint32Array(1);crypto.getRandomValues(rand);i=rand[0]%available.length;
+  let idx=Math.floor(Math.random()*available.length);
+  if(window.crypto&&window.crypto.getRandomValues){
+   const random=new Uint32Array(1);window.crypto.getRandomValues(random);
+   idx=random[0]%available.length;
   }
-  const choice=available[i];picked.push(choice);
-  el.classList.remove("shuffling");el.textContent=choice;
-  spinning=false;rosterState();
- },1300);
+  const selected=available[idx];
+  picked.push(selected);
+  output.classList.remove("shuffling");output.textContent=selected;
+  spinning=false;drawState();
+ },1250);
 });
-rosterState();
+drawState();
 resize();show((Number(location.hash.slice(1))||1)-1);
 })();
