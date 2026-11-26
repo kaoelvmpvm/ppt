@@ -8,7 +8,7 @@
 
 | 簡報 | 網址 | 內容 |
 |---|---|---|
-| 王子脫魯記 SET｜平權偵察隊 | https://kaoelvmpvm.github.io/ppt/decks/menstrual-equity-set.html | 15頁：角色引入、四章十題、作答提醒、可離線顯示的SET QR Code、可調節倒數、學生進階分析、遊戲後偏見與用品可近性統整、隨機抽人討論 |
+| 王子脫魯記 SET｜平權偵察隊 | https://kaoelvmpvm.github.io/ppt/decks/menstrual-equity-set.html | 14頁：角色引入、四章十題、作答提醒、可離線顯示的SET QR Code、可調節倒數、學生進階分析、遊戲後偏見與用品可近性統整、隨機抽人討論 |
 | 健促 AI 健多多｜一把鏟子，挖出健康的可能 | https://kaoelvmpvm.github.io/ppt/decks/health-dodo.html | 完整保留原16頁演講簡報、動畫、講者備忘和策略分享工具 |
 
 SET 學生遊戲本體仍維持在獨立儲存庫：https://kaoelvmpvm.github.io/menstrual-equity-set-jh/
