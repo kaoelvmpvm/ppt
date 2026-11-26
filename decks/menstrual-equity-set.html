@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#242b3d">
 <title>王子脫魯記 SET｜平權偵察隊</title>
 <link rel="stylesheet" href="./set.css?v=1">
-<script src="./set.js?v=1" defer></script>
+<script src="./set.js?v=2" defer></script>
 </head>
 <body>
 <main id="frame" role="main">
@@ -188,9 +188,9 @@
       <div id="drawResult" aria-live="polite">準備抽選</div>
       <div class="drawbuttons">
         <button id="draw" type="button" disabled>開始抽人</button>
-        <button id="openRoster" type="button" class="secondary">設定名單</button>
+        <button id="resetDraw" type="button" class="secondary">重新開始</button>
       </div>
-      <p id="rosterStatus">請先設定本班名單</p>
+      <p id="rosterStatus">按「開始抽人」隨機邀請一位同學。</p>
     </div>
     <div>
       <p class="lead" style="font-size:39px;font-weight:900;color:#594d66">先說你的判斷，<br>也說出你的理由。</p>
@@ -235,7 +235,6 @@
       <a href="../">返回選擇投影片</a>
       <button id="overviewBtn" type="button">投影片總覽</button>
       <button id="notesBtn" type="button">講者備忘</button>
-      <button id="rosterMenu" type="button">設定抽選名單</button>
       <button id="motionBtn" type="button">關閉動畫</button>
       <button id="printBtn" type="button">列印／PDF</button>
     </div>
@@ -244,17 +243,6 @@
 <div id="progress"></div>
 <aside id="notes" hidden><h2>講者備忘</h2><p id="noteText"></p></aside>
 <dialog id="overview"><h2>投影片總覽</h2><div id="overviewList"></div><div class="dialog-actions"><button id="overviewClose" type="button">關閉</button></div></dialog>
-<dialog id="rosterDialog">
-  <h2>抽人名單設定</h2>
-  <p>預填 01～30 是<strong>示範座號</strong>，不是實際班級名單。請依本班實際情況調整並移除缺席者，每行一人。抽過不重複；資料僅保留在本頁，不會上傳或儲存。</p>
-  <textarea id="rosterInput" aria-label="抽選名單"></textarea>
-  <p id="rosterError" style="color:#a34860" role="alert"></p>
-  <div class="dialog-actions">
-    <button id="rosterCancel" type="button">取消</button>
-    <button id="rosterReset" type="button">重設抽選紀錄</button>
-    <button id="rosterApply" type="button">確認名單</button>
-  </div>
-</dialog>
-<script id="notesData" type="application/json">["開場：以探究姿態進入 SET。請勿在學生作答前公布題目正解。","讓學生回顧王子、灰姑娘、長髮公主與賣火柴的小女孩的不同處境，不直接提示題目答案。","4章10題的題數依實際 SET 程式：基礎2、偏見4、資源3、整合1。這不是搶答競賽。","強調讀情境、找線索、閱讀回饋並修正。學生首次答錯是形成性評量線索，不必因此羞辱或貼標籤。","QR 指向正式 SET GitHub Pages。提醒輸入班級座號姓名、閱讀資料說明，避免公開學生的個人畫面。","20分鐘為可調整的課堂倒數，不代表每位學生一定要20分鐘內完成。進度慢的學生要保留合理思考時間。","完成十題是 B 等基本通關。結算頁可選兩項進階問題並書寫原因與影響，A 等由教師評閱，不是寫了就自動A。送出須確認 Google 回執。","遊戲後的概念轉場：先讓學生說出『除了不適以外』還想到什麼，再顯示接下來的三個分析面向。","從 Q05 引出月經污名；可問『沒有被嘲笑的人，是否也可能因此不敢求助？』避免將推測當成每個人必然的反應。","呼應 Q07、Q08、Q10：免費不一定方便取得，提醒學生思考價格、時間、地點與隱私的限制。","呼應 Q09：平均發放也有管理便利，不要直接斷言完全錯誤，追問怎麼兼顧差異與制度成本。","呼應 Q10：性J3的偏見和性J10的資源可近性可能互相影響；有物資不代表真正有效。讓學生先自己歸納。","以『設定名單』依實際班級名單確認後再抽選。預填01～30只是示例；抽選不重複、沒有預排特定學生。不得強迫披露私密經期經驗。","由學生原始回答決定追問方向，可採知識與尊重、意圖與影響、關心與自主、平均與需求等四類。若回答已完整，無須追問到固定層數。","結語統整性 J3、性 J10：健康知識是起點，偏見、差別待遇與資源安排也可能影響生活與福祉。"]</script>
+<script id="notesData" type="application/json">["開場：以探究姿態進入 SET。請勿在學生作答前公布題目正解。","讓學生回顧王子、灰姑娘、長髮公主與賣火柴的小女孩的不同處境，不直接提示題目答案。","4章10題的題數依實際 SET 程式：基礎2、偏見4、資源3、整合1。這不是搶答競賽。","強調讀情境、找線索、閱讀回饋並修正。學生首次答錯是形成性評量線索，不必因此羞辱或貼標籤。","QR 指向正式 SET GitHub Pages。提醒輸入班級座號姓名、閱讀資料說明，避免公開學生的個人畫面。","20分鐘為可調整的課堂倒數，不代表每位學生一定要20分鐘內完成。進度慢的學生要保留合理思考時間。","完成十題是 B 等基本通關。結算頁可選兩項進階問題並書寫原因與影響，A 等由教師評閱，不是寫了就自動A。送出須確認 Google 回執。","遊戲後的概念轉場：先讓學生說出『除了不適以外』還想到什麼，再顯示接下來的三個分析面向。","從 Q05 引出月經污名；可問『沒有被嘲笑的人，是否也可能因此不敢求助？』避免將推測當成每個人必然的反應。","呼應 Q07、Q08、Q10：免費不一定方便取得，提醒學生思考價格、時間、地點與隱私的限制。","呼應 Q09：平均發放也有管理便利，不要直接斷言完全錯誤，追問怎麼兼顧差異與制度成本。","呼應 Q10：性J3的偏見和性J10的資源可近性可能互相影響；有物資不代表真正有效。讓學生先自己歸納。","抽選使用預先設定的七個座號，不在投影片或抽選動畫中顯示候選名單。按「開始抽人」隨機抽出一位，抽過不重複；按「重新開始」可重設抽選。請同學分享自己選擇的偏見或資源障礙與理由，不要求公開私人經期經驗。","由學生原始回答決定追問方向，可採知識與尊重、意圖與影響、關心與自主、平均與需求等四類。若回答已完整，無須追問到固定層數。","結語統整性 J3、性 J10：健康知識是起點，偏見、差別待遇與資源安排也可能影響生活與福祉。"]</script>
 </body>
 </html>
