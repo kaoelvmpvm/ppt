@@ -27,7 +27,14 @@ assert.ok(old.includes('href="../share/"'),"健多多分享工具路徑未更新
 assert.ok(old.includes('href="../"'),"原簡報未提供回選單入口");
 
 const count=(set.match(/<section class="slide(?:\s|")/g)||[]).length;
-assert.equal(count,15,"SET應有15頁");
+assert.equal(count,14,"SET應有14頁");
+assert.ok(!set.includes('data-title="四個值得追問的問題"'),"原第十四頁必須刪除");
+assert.ok(set.includes('data-title="從知道走向理解"'),"原結語頁必須保留");
+assert.ok(setCss.includes("grid-template-columns:repeat(2,minmax(0,1fr))"),"首頁四角色必須用2×2格位排列");
+assert.ok(setCss.includes("grid-template-rows:repeat(2,minmax(0,1fr))"),"首頁四角色須分成兩列");
+assert.ok(setCss.includes("position:static;"),"首頁角色不得使用絕對定位而重疊");
+assert.ok(!setCss.includes(".cast-hero img:nth-child("),"首頁不得使用單獨角色的覆蓋定位");
+assert.ok(set.includes('href="./set.css?v=2"'),"CSS 必須更新快取版本");
 const notesMatch=set.match(/<script id="notesData" type="application\/json">([\s\S]*?)<\/script>/);
 assert.ok(notesMatch,"SET講者備忘缺漏");
 assert.equal(JSON.parse(notesMatch[1]).length,count,"每頁應有講者備忘");
