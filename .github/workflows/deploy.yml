@@ -1,4 +1,4 @@
-name: Deploy HealthDODO presentation to GitHub Pages
+name: Deploy multi-deck presentations to GitHub Pages
 
 on:
   push:
@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Validate presentation catalog and slide decks
+        run: node tests/site.cjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
