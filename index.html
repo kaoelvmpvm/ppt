@@ -1,370 +1,94 @@
-<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#11201d"><title>健多多｜一把鏟子，挖出健康的可能</title><style>
-:root{--ink:#f7f1e6;--accent:#d3a66a;--dark:#11201d;--deep:#0c1917;--light:#f0ede4;--light-ink:#1a2925;--fine:#9fae9d;--green:#94c3a5;--line:rgba(255,255,255,.19)}
-*{box-sizing:border-box}html,body{margin:0;background:#09100e;color:var(--ink);font-family:"Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif;overflow:hidden}button,a{font:inherit}button{cursor:pointer}#frame{position:absolute;width:1600px;height:900px;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center;overflow:hidden;isolation:isolate;background:var(--deep)}
-.slide{position:absolute;inset:0;display:none;padding:64px 100px 76px;overflow:hidden;background:var(--dark);color:var(--ink);isolation:isolate}
-.slide.active{display:block;animation:slidein .38s ease both}.slide.paper{background:#eeeae0;color:var(--light-ink);--accent:#9a673a;--line:rgba(32,49,40,.22)}
-.slide.dark{background:#11201d;color:#f7f1e6}
-.slide::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(90deg,transparent 49.92%,rgba(198,176,139,.045) 50%,transparent 50.08%);opacity:.35}
-.slide.paper:before{background-image:repeating-linear-gradient(0deg,transparent 0px,transparent 64px,rgba(42,66,47,.024) 65px)}
-.chapter{font-size:18px;letter-spacing:.16em;font-weight:750;color:var(--accent);margin:0 0 18px}.slide h1{font-family:"Noto Serif CJK TC","Noto Serif TC",serif;font-size:71px;line-height:1.22;font-weight:800;letter-spacing:.018em;margin:0 0 40px;max-width:1360px}.slide h1 em,.accent{font-style:normal;color:var(--accent)}p,h3,h4,blockquote{margin:0}.page-footer{position:absolute;bottom:25px;left:100px;right:100px;display:flex;align-items:center;justify-content:space-between;font-size:15px;letter-spacing:.12em;color:color-mix(in srgb,currentColor 56%,transparent)}.page-footer b{font-variant-numeric:tabular-nums;font-weight:650;color:var(--accent)}
-.slide.cover h1{font-size:92px;margin:10px 0 30px;line-height:1.18}.cover-layout{display:grid;grid-template-columns:1fr 640px;gap:32px;align-items:center}.cover-copy{padding:10px 0 0}.cover-rule{width:355px;height:2px;background:var(--accent);margin:25px 0}.overline{font-family:Georgia,serif;letter-spacing:.19em;color:var(--fine);font-size:20px}.cover-slogan{font-size:37px;line-height:1.6;font-weight:450}.cover-caption{font-size:19px;letter-spacing:.11em;color:#b1bbae;margin-top:28px}.shovel-wrap{height:430px;position:relative;display:flex;align-items:flex-start;justify-content:center;padding-top:10px}.shovel-svg{height:408px;width:620px;transform:translateY(-16px)}.art-caption{position:absolute;right:20px;bottom:18px;font-size:14px;letter-spacing:.18em;color:#c5b18e}.slide.active .shovel-svg{animation:shovel-in 1.1s ease both}
-.landscape-layout{display:grid;grid-template-columns:790px 1fr;gap:54px;align-items:center;margin-top:-8px}.landscape-visual{position:relative;overflow:hidden;background:#e7dbc7;border:1px solid #bca88c;height:450px}.geology-svg{width:100%;height:100%}.landscape-cap{position:absolute;left:26px;top:24px;font-size:23px;color:#263931;font-family:"Noto Serif CJK TC",serif;font-weight:650}.landscape-list>div{padding:18px 0 20px;border-bottom:1px solid #9e9e88;display:flex;flex-direction:column;gap:5px}.landscape-list span{color:#906743;font-size:17px;letter-spacing:.1em}.landscape-list b{font-size:28px;font-weight:700}.landscape-list small{font-size:19px;color:#5c6a5f;line-height:1.45}
-.road-area{height:325px;margin:-20px 0 20px}.road-svg{width:100%;height:100%}.drive-car{offset-path:path('M22 245C130 225 168 73 323 109s163 192 330 150 129-140 205-139');offset-distance:8%;offset-rotate:auto}.slide.active .drive-car{animation:drive 4s ease-in-out forwards}.driver-roles{display:grid;grid-template-columns:1fr 2px 1fr;gap:50px;align-items:center}.driver-roles>div:not(.role-divider){display:grid;grid-template-columns:52px 1fr;column-gap:20px;align-items:center}.driver-roles h3{font-size:31px}.driver-roles p{grid-column:2;font-size:22px;color:#bbc6b9;margin-top:7px}.role-marker{width:50px;height:50px;border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font:600 24px Georgia}.role-marker.human{border-color:#8abb9d;color:#8abb9d}.role-divider{height:76px;background:#62746d}.footnote{font-size:15px;color:#9fad9e;margin-top:23px}
-.split-panels{display:grid;grid-template-columns:1fr 1fr;gap:22px;height:462px}.split-panels>div{padding:30px 42px;display:flex;flex-direction:column}.panel-ai{background:#183a33;color:#f6f2e9}.panel-human{background:#dfd6c6;color:#1d322d;border:1px solid #bcb6a6}.split-panels strong{font:700 62px Georgia,serif;letter-spacing:.04em;margin-bottom:10px}.split-panels span{font-size:25px;letter-spacing:.12em;opacity:.8;margin-bottom:19px}.split-panels ol{margin:0;padding-left:28px;display:grid;gap:17px}.split-panels li{font-size:30px;line-height:1.35}
-.archive-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}.archive-quote blockquote{font-family:"Noto Serif CJK TC",serif;font-size:43px;line-height:1.55}.archive-quote strong{color:#8c5d34}.archive-meta{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}.archive-meta span{font-size:28px;border-top:1px solid #acb0a2;padding:14px 0 12px;font-weight:600;color:#27372f}.archive-art{height:390px;position:relative;background:#dfd6c6;overflow:hidden;border:1px solid #b0a48e}.photo-slice{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.32;filter:saturate(.5)}.doc-stack{position:absolute;inset:0}.doc{position:absolute;width:250px;height:295px;padding:24px;background:#f6f2e9;box-shadow:0 12px 26px #554a3a45;border:1px solid #afa58e;display:flex;flex-direction:column}.doc small{font-size:14px;color:#6d6d58;margin-bottom:30px}.doc b{font-size:25px;color:#28372f;margin-bottom:29px}.doc i{display:block;background:#afb2a5;width:100%;height:8px;margin:9px 0}.doc i:nth-last-child(2){width:76%}.doc i:nth-last-child(1){width:88%}.doc.a{left:35px;top:46px;transform:rotate(-11deg)}.doc.b{left:185px;top:33px;transform:rotate(5deg)}.doc.c{left:320px;top:57px;transform:rotate(13deg)}.photo-credit{font-size:13px;color:#667469;margin-top:8px}
-.issue-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:75px;align-items:center;margin-top:-8px}.issue-list{display:grid;grid-template-columns:1fr 1fr;column-gap:37px;row-gap:10px}.issue-row{display:grid;grid-template-columns:48px 1fr;column-gap:10px;align-items:start;min-height:106px;border-top:1px solid #4f6259;padding-top:12px}.issue-row span{color:var(--accent);font:600 26px Georgia,serif}.issue-row b{font-size:27px;line-height:1.35}.issue-row small{grid-column:2;font-size:17px;color:#afbbac;margin-top:1px}.issue-thesis{border-left:2px solid var(--accent);padding-left:36px}.issue-numeral{font:700 88px Georgia;color:#d2b17c;opacity:.6}.issue-title{font:700 34px "Noto Serif CJK TC",serif;color:#d2b17c;opacity:1;letter-spacing:.08em;display:block;margin-bottom:14px}.issue-thesis p{font-family:"Noto Serif CJK TC",serif;font-size:36px;line-height:1.55}.issue-thesis p span{color:var(--accent)}.issue-bar{width:83%;height:3px;background:#916f4f;margin:22px 0}.issue-thesis small{font-size:20px;line-height:1.6;color:#b8c4b7}
-.flow-compare{display:grid;gap:22px}.flow-old,.flow-new{display:grid;grid-template-columns:110px repeat(7,1fr);align-items:center;gap:8px;padding:18px 16px;position:relative;border:1px solid #bbb7a9}.flow-old{opacity:.62}.flow-old span,.flow-new span{font:700 19px Georgia;color:#866e53}.flow-old>div,.flow-new>div{padding:21px 7px;text-align:center;font-size:24px;font-weight:700;background:#d5d4ca}.flow-new>div{background:#d0dfd3;color:#244c40;border:1px solid #92ac9a}.flow-old i,.flow-new i{font-size:24px;text-align:center;font-style:normal;color:#a17e4d}.flow-old small,.flow-new small{position:absolute;right:16px;bottom:-26px;font-size:17px;color:#6c7467}.flow-new{margin-top:40px}.loop-line{position:relative;margin:35px 135px 0;height:100px;color:#527c61}.loop-line svg{height:100%;width:100%}.loop-line span{position:absolute;top:49px;left:44%;font-size:21px;background:#eeeae0;padding:0 18px}
-.principle-contrast{display:grid;grid-template-columns:1fr 110px 1fr;gap:30px;align-items:center;height:372px}.principle-contrast>div:not(.pc-arrow){padding:30px 28px;border-top:2px solid #96a699;height:300px;position:relative}.pc-old{opacity:.62;background:linear-gradient(90deg,rgba(255,255,255,.03),transparent)}.principle-contrast span{font-size:22px;letter-spacing:.11em;color:var(--accent)}.principle-contrast strong{display:block;font-family:"Noto Serif CJK TC",serif;font-size:61px;margin:27px 0 16px}.principle-contrast p{font-size:26px;color:#c5d0c0}.pc-arrow{text-align:center;font-size:85px;color:var(--accent)}.pc-new{background:linear-gradient(90deg,rgba(171,134,91,.12),transparent)}.principle-banner{border-top:1px solid #64766b;padding:22px 0;font-size:26px;letter-spacing:.08em;color:#b5cfb8}
-.ophelia-layout{display:grid;grid-template-columns:1fr 310px 1fr;gap:15px;align-items:center;margin-top:-18px}.principle-row{display:grid;grid-template-columns:45px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid #b9b8a9;align-items:center;min-height:106px}.principle-row>span{color:#906e41;font:700 24px Georgia}.principle-row b{display:block;font-size:25px}.principle-row small{font-size:17px;color:#65776b}.ophelia-hub{position:relative;color:#7d865d;height:320px}.ophelia-hub svg{width:100%;height:100%}.ophelia-hub strong{position:absolute;top:43%;left:0;width:100%;text-align:center;font:700 34px Georgia;color:#285845}.ophelia-hub span{position:absolute;top:60%;left:0;width:100%;text-align:center;font-size:14px;color:#58735e}.ophelia-foot{font-size:19px;color:#58735e;margin-top:11px}
-.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:8px;border-top:1px solid #6b7769;border-bottom:1px solid #6b7769}.zone-col{padding:23px 34px 28px;min-height:395px;border-right:1px solid #6b7769;display:flex;flex-direction:column}.zone-col:last-child{border-right:0}.zone-no{font:700 90px Georgia;color:#e3b67a;line-height:1}.zone-col small{font-size:17px;color:#a1b5a4;margin:10px 0 25px;letter-spacing:.16em}.zone-col b{font-size:27px;color:#a1b5a4}.zone-col strong{font:800 62px "Noto Serif CJK TC",serif;margin:10px 0}.zone-col p{font-size:23px;line-height:1.5;color:#becabc}.zone-footer{margin-top:28px;font-size:24px;color:var(--accent)}
-.workflow-case{display:flex;align-items:center;gap:16px;border-left:3px solid #ab8452;padding:12px 20px;margin:0 0 38px;background:#e0ddcf}.workflow-case span{font-size:17px;letter-spacing:.1em;color:#78765d}.workflow-case strong{font-size:30px}.workflow-case p{font-size:20px;color:#66766b;margin-left:auto}.workflow-steps{display:grid;grid-template-columns:repeat(5,1fr 32px) 1fr;gap:3px;align-items:center;margin-top:12px}.workflow-step{display:flex;flex-direction:column;min-width:0;min-height:205px;justify-content:center;padding:14px;background:#ddd9ca;border-top:5px solid #91a99a}.workflow-step .num{font:700 22px Georgia;color:#8a6e49;margin-bottom:20px}.workflow-step b{font-size:28px;line-height:1.35}.workflow-step small{font-size:18px;color:#64776c;margin-top:12px;line-height:1.45}.workflow-step.human-step{background:#1a4b3c;color:#f6f1e8;border-top-color:#d3a66a}.workflow-step.human-step .num{color:#ecc48e}.workflow-step.human-step small{color:#c3d3c4}.workflow-arrow{text-align:center;font-size:32px;color:#8b795a}.decision-quote{margin-top:34px;display:flex;align-items:center;gap:25px}.decision-quote strong{border:1px solid #9a774c;color:#90683d;padding:12px 18px;font-size:20px}.decision-quote span{font-size:27px;font-weight:650}
-.continuity-layout{display:grid;grid-template-columns:325px 100px 1fr;gap:10px;align-items:center;margin-top:14px}.continuity-source>span{font-size:18px;letter-spacing:.13em;color:#b7bdaa}.minidoc{background:#efe9d9;color:#2d3a32;min-height:300px;margin-top:14px;padding:28px 24px;box-shadow:8px 8px 0 #7b82754d;display:flex;flex-direction:column}.minidoc b{font-size:28px;margin-bottom:25px}.minidoc i{height:9px;background:#b8beb1;width:100%;margin:10px 0}.minidoc i:nth-of-type(2){width:76%}.minidoc i:nth-of-type(3){width:89%}.minidoc i:nth-of-type(4){width:64%}.minidoc small{font-size:18px;margin-top:auto;color:#647769}.continuity-path svg{width:100%;height:190px;color:#d3a66a}.continuity-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.continuity-choices>div{border-top:3px solid #d3a66a;border-bottom:1px solid #6d776d;padding:18px 16px 20px;min-height:300px}.continuity-choices span{font:700 17px Georgia;color:#d3a66a;letter-spacing:.1em}.continuity-choices b{display:block;font:700 50px "Noto Serif CJK TC",serif;margin:38px 0 20px}.continuity-choices p{font-size:22px;color:#c8d0c2;line-height:1.5}.continuity-line{font-size:24px;color:#d8b884;padding:20px 0;margin-top:27px;border-top:1px solid #6b7769}
-.topics-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:95px;align-items:center;margin-top:-14px}.topics-list{display:grid;grid-template-columns:1fr 1fr;gap:0 35px}.topic-line{display:grid;grid-template-columns:48px 1fr 12px;align-items:center;border-bottom:1px solid #b9b6a9;padding:13px 0;min-height:95px}.topic-line>span:first-child{font:700 24px Georgia;color:#8b673e}.topic-line strong{font-size:27px}.topic-dot{width:8px;height:8px;border-radius:50%;background:#a88d6d}.topics-aside{border-left:2px solid #a88153;padding-left:45px}.topics-aside>span{font:700 130px Georgia;color:#a87a45;line-height:1}.topics-aside p{font:700 39px "Noto Serif CJK TC",serif;line-height:1.6;margin:25px 0}.topics-small{font-size:21px;color:#5e7368}
-.guard-layout{display:grid;grid-template-columns:280px 1fr;gap:70px;align-items:center}.guard-symbol{height:270px;width:270px;border:9px solid #bb775e;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#eab69b;font:700 220px Georgia}.guard-rule{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid #596f61}.guard-rule>span{font:600 25px Georgia;color:#d5ad78}.guard-rule b{font-size:31px;line-height:1.4}.guard-rule small{display:block;color:#bccabc;font-size:20px;line-height:1.4;margin-top:5px}.guard-strap{font-size:25px;color:#d5ad78;margin-top:32px;border-left:3px solid #d5ad78;padding-left:18px}
-.branch-core{background:#214b3d;color:#faf6ed;padding:24px 30px;text-align:center;max-width:850px;margin:0 auto}.branch-core span{font:700 17px Georgia;letter-spacing:.13em;color:#d1b185;display:block;margin-bottom:5px}.branch-core strong{font-size:30px}.branch-connector{height:90px;position:relative;width:71%;margin:0 auto}.branch-connector:before{content:"";position:absolute;left:0;right:0;top:46px;border-top:2px solid #ac8b5b}.branch-connector:after{content:"";position:absolute;left:50%;top:0;height:47px;border-left:2px solid #ac8b5b}.branch-connector i{position:absolute;top:46px;height:43px;border-left:2px solid #ac8b5b}.branch-connector i:nth-child(1){left:0}.branch-connector i:nth-child(2){left:50%}.branch-connector i:nth-child(3){right:0}.branch-targets{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.branch-targets>div{min-height:246px;border-top:3px solid #a17b4a;padding:17px 16px 13px;background:#e1dcd0}.branch-targets span{font-size:18px;color:#82633d}.branch-targets b{display:block;font:700 39px Georgia,serif;margin:22px 0 12px;color:#25483d}.branch-targets small{font-size:21px;color:#647468;line-height:1.5}.branch-note{font-size:18px;color:#68786e;margin-top:22px}
-.final-layout{display:grid;grid-template-columns:1fr 680px;align-items:center;gap:15px}.final-copy p{font-family:"Noto Serif CJK TC",serif;font-size:36px;line-height:1.75}.final-copy blockquote{font:700 42px "Noto Serif CJK TC",serif;color:var(--accent);line-height:1.5;margin-top:40px}.final-visual{position:relative;height:455px}.cycle-lines{position:absolute;inset:8px 0 0 0;width:100%;height:360px;color:#d4ab71}.cycle-card{position:absolute;width:210px;height:110px;border:1px solid rgba(212,171,113,.85);background:#17362f;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.18)}.cycle-card strong{font-size:28px;font-family:"Noto Serif CJK TC",serif}.cycle-card small{font-size:21px;color:#b7c9b2;margin-top:7px}.cycle-card.card-a{left:70px;top:36px}.cycle-card.card-b{right:44px;top:154px}.cycle-card.card-c{left:92px;bottom:46px}.cycle-caption{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:22px;letter-spacing:.14em;color:var(--accent)}
-/* UI: choose a functional restrained instrument bar instead of browser-glass ornament */
-#controls{position:fixed;z-index:1000;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:#14251f;padding:6px 9px;border:1px solid #5e6e61;box-shadow:0 3px 16px #0009;border-radius:5px;pointer-events:auto}#controls button{border:0;background:#223830;color:#f2f1e5;border-radius:3px;font-size:15px;padding:10px 12px;min-height:40px}#controls button:hover,#controls button:focus-visible{outline:2px solid #e7bc80;outline-offset:1px}#controls button:disabled{opacity:.3}#counter{font:700 15px Georgia,serif;color:#e2b67d;padding:0 8px;white-space:nowrap}#progress{position:fixed;z-index:1001;bottom:0;height:4px;width:0;background:#cc9d5b;left:0;transition:width .2s}body.clean #controls{opacity:0;pointer-events:none}body.clean #progress{opacity:0}
-#notes{position:fixed;z-index:1002;right:15px;bottom:80px;width:520px;max-height:52vh;overflow:auto;padding:20px 23px;background:#f1eee4;color:#172820;border:2px solid #7c9b81;box-shadow:0 14px 36px #0008}#notes h2{font-size:18px;color:#81603c;margin:0 0 12px}#notes p{font-size:20px;line-height:1.7}
-dialog{width:min(780px,93vw);max-height:82vh;overflow:auto;border:2px solid #c3a173;background:#f4efe4;color:#1c3027;padding:28px;border-radius:3px}dialog::backdrop{background:#06130ecb}dialog h2{margin:0 0 15px;font-size:27px}dialog button{border:1px solid #425a49;background:#214537;color:#f8f1e5;padding:12px 15px;margin:10px 8px 0 0;cursor:pointer}#overviewList{display:grid;grid-template-columns:1fr 1fr;gap:8px}#overviewList button{text-align:left;font-size:16px;line-height:1.5;margin:0}#overviewList button.current{outline:3px solid #ba8854}[hidden]{display:none!important}
-.slide.active .issue-row,.slide.active .principle-row,.slide.active .zone-col,.slide.active .workflow-step,.slide.active .guard-rule,.slide.active .branch-targets>div{animation:reveal .55s ease both}.slide.active .issue-row:nth-child(2),.slide.active .principle-row:nth-child(2),.slide.active .zone-col:nth-child(2),.slide.active .workflow-step:nth-child(3),.slide.active .branch-targets>div:nth-child(2){animation-delay:.1s}.slide.active .issue-row:nth-child(3),.slide.active .principle-row:nth-child(3),.slide.active .zone-col:nth-child(3),.slide.active .workflow-step:nth-child(5),.slide.active .branch-targets>div:nth-child(3){animation-delay:.2s}
-@keyframes reveal{from{opacity:0;translate:0 15px}to{opacity:1;translate:0 0}}@keyframes slidein{from{opacity:.65}to{opacity:1}}@keyframes shovel-in{from{opacity:0;transform:translate(14px,28px) rotate(-5deg)}to{opacity:1;transform:translate(0,0) rotate(0)}}@keyframes drive{from{offset-distance:6%}to{offset-distance:91%}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-@media(max-width:650px){#controls{padding:3px;gap:2px}#controls button{font-size:12px;padding:6px 8px;min-height:32px}.wide-control{display:none}}
-@page{size:16.666667in 9.375in;margin:0}@media print{html,body{width:1600px;height:auto;overflow:visible;-webkit-print-color-adjust:exact;print-color-adjust:exact}#frame{position:static;transform:none!important;height:auto;overflow:visible}.slide,.slide.active{display:block;position:relative;width:1600px;height:900px;break-after:page;page-break-after:always;animation:none!important}.slide *{animation:none!important}#controls,#progress,#notes,dialog{display:none!important}}
-
-/* v6 overrides */
-.flow-compare{display:grid;gap:28px;margin-top:6px}
-.flow-track{display:grid!important;grid-template-columns:130px 1fr!important;gap:22px;align-items:center;padding:22px 24px;position:relative;border:1px solid #bbb7a9;min-height:142px}
-.flow-track.old{opacity:.72}
-.flow-label{font:700 22px Georgia,serif;color:#866e53}
-.flow-steps-lg{display:grid!important;grid-template-columns:1fr 52px 1fr 52px 1fr 52px 1fr!important;align-items:center;gap:8px}
-.flow-steps-lg>div{padding:24px 10px;text-align:center;font-size:29px;font-weight:700;background:#d5d4ca}
-.flow-track.new .flow-steps-lg>div{background:#d0dfd3;color:#244c40;border:1px solid #92ac9a}
-.flow-steps-lg i{font-size:34px;text-align:center;font-style:normal;color:#a17e4d}
-.flow-track small{grid-column:2;font-size:21px;color:#6c7467;margin-top:6px}
-
-
-/* V7: correct the hero visual's vertical anchor and unify the final diagram. */
-.slide.cover .shovel-wrap { position:relative; transform:translateY(-140px); }
-.slide.cover .art-caption { bottom:-6px; }
-.final-visual.cycle-visual { position:relative; height:455px; overflow:visible; }
-.cycle-flow-svg { display:block; width:680px; height:455px; max-width:100%; overflow:visible; }
-#controls .share-control{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;background:#d5ab73;color:#15251e;border-radius:3px;font-size:14px;font-weight:700;white-space:nowrap;text-decoration:none}#controls .share-control:hover,#controls .share-control:focus-visible{background:#e8c89a;outline:2px solid #e7bc80;outline-offset:1px}@media(max-width:700px){#controls .share-control{padding:6px 8px;font-size:12px;min-height:32px}}.page-footer .speaker-credit{display:inline-block;margin-left:24px;font-weight:750;font-size:16px;letter-spacing:.04em;color:var(--accent);white-space:nowrap}
-
-/* V9 - compact navigation; secondary actions open in an upward menu */
-#controls{gap:6px;padding:6px 8px;border-radius:7px;max-width:calc(100vw - 16px)}
-#controls .more-wrap{position:relative;display:flex;align-items:center}
-#controls #moreBtn{white-space:nowrap;display:flex;align-items:center;gap:7px}
-#controls #moreBtn[aria-expanded="true"]{background:#45624f;outline:1px solid #d9ad72}
-#controls .more-menu{position:absolute;right:0;bottom:calc(100% + 12px);width:210px;max-width:calc(100vw - 24px);padding:8px;z-index:1100;background:#172b23;border:1px solid #738876;border-radius:9px;box-shadow:0 14px 34px #000b;display:grid;gap:5px}
-#controls .more-menu[hidden]{display:none!important}
-#controls .more-menu button,#controls .more-menu a.share-control{display:flex;align-items:center;justify-content:flex-start;width:100%;box-sizing:border-box;text-align:left;padding:11px 13px;min-height:42px;font-size:15px;margin:0;border-radius:4px;color:#f1f0e4;text-decoration:none;background:#273f34}
-#controls .more-menu button:hover,#controls .more-menu button:focus-visible,#controls .more-menu a.share-control:hover,#controls .more-menu a.share-control:focus-visible{background:#476351;outline:2px solid #dfb777;outline-offset:-1px}
-#controls .more-menu a.share-control{background:#b98b54;color:#10231c;font-weight:750}
-#controls .more-menu a.share-control:hover,#controls .more-menu a.share-control:focus-visible{background:#e8c89a;color:#10231c}
-@media(max-width:650px){#controls{gap:3px;padding:4px 5px}#controls #fullBtn{font-size:12px}#controls #moreBtn{font-size:12px}}
-/* V10 — motion is narrative: restrained entry, workflow sequencing and SVG line tracing. */
-.slide.active{animation:scene-appear .52s cubic-bezier(.18,.7,.3,1) both}
-.slide.active::after{content:"";position:absolute;z-index:6;pointer-events:none;top:0;left:100px;height:3px;width:210px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform-origin:left center;animation:scene-underline 1.15s cubic-bezier(.2,.7,.3,1) both;opacity:.65}
-.slide.active .chapter{animation:move-in-soft .5s .03s both}
-.slide.active h1{animation:move-in-headline .76s cubic-bezier(.17,.8,.3,1) .08s both}
-.slide.active h1 em,.slide.active h1 .accent{animation:headline-glow 1.25s .48s ease-out both}
-/* 1 — headline, tool and a gentle peripheral light, keeping the shovel stationary after entry. */
-.slide.cover .shovel-wrap::before{content:"";position:absolute;pointer-events:none;left:15%;right:15%;top:12%;bottom:8%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(216,173,105,.21),transparent 65%);opacity:0}
-.slide.cover.active .shovel-wrap::before{animation:subtle-light 4.5s ease-in-out 1.1s infinite}
-.slide.cover.active .cover-rule{animation:draw-rule .8s .58s both;transform-origin:left center}
-.slide.cover.active .cover-copy .overline,.slide.cover.active .cover-copy .cover-slogan,.slide.cover.active .cover-copy .cover-caption{animation:move-in-soft .65s both}
-.slide.cover.active .cover-copy .overline{animation-delay:.25s}.slide.cover.active .cover-copy .cover-slogan{animation-delay:.48s}.slide.cover.active .cover-copy .cover-caption{animation-delay:.75s}
-/* 2 — geology comes in as one composition; individual gold pieces shimmer once. */
-.slide.terrain.active .landscape-visual{animation:visual-enter .95s .28s both}
-.slide.terrain.active .landscape-list>div{animation:move-in-soft .53s both}
-.slide.terrain.active .landscape-list>div:nth-child(1){animation-delay:.36s}
-.slide.terrain.active .landscape-list>div:nth-child(2){animation-delay:.57s}
-.slide.terrain.active .landscape-list>div:nth-child(3){animation-delay:.78s}
-.slide.terrain.active .geology-svg g[fill^="url(#geoGold"]{animation:gold-signal 1.25s 1.2s ease-out both}
-/* 3 — road/car existing motion preserved, the two responsibilities appear in sequence. */
-.slide.motion-slide.active .road-area{animation:visual-enter .7s .2s both}
-.slide.motion-slide.active .driver-roles>div:not(.role-divider){animation:move-in-soft .64s both}
-.slide.motion-slide.active .driver-roles>div:first-child{animation-delay:.66s}
-.slide.motion-slide.active .driver-roles>div:last-child{animation-delay:1s}
-.slide.motion-slide.active .role-divider{animation:grow-vertical .7s .65s both}
-.slide.motion-slide.active .footnote{animation:fade-clarify .7s 1.35s both}
-/* 4 — distinct AI and human halves meet; lists cascade instead of fading simultaneously. */
-.slide.split-slide.active .panel-ai{animation:panel-from-left .72s .22s both}
-.slide.split-slide.active .panel-human{animation:panel-from-right .72s .37s both}
-.slide.split-slide.active .split-panels li{animation:move-in-soft .48s both}
-.slide.split-slide.active .split-panels li:nth-child(1){animation-delay:.82s}
-.slide.split-slide.active .split-panels li:nth-child(2){animation-delay:1s}
-.slide.split-slide.active .split-panels li:nth-child(3){animation-delay:1.18s}
-/* 5 — records fan onto the desk, retaining their correct final rotation. */
-.slide.archive.active .archive-quote{animation:move-in-soft .7s .2s both}
-.slide.archive.active .archive-art{animation:visual-enter .7s .25s both}
-.slide.archive.active .doc.a{animation:document-a .76s .56s both}
-.slide.archive.active .doc.b{animation:document-b .76s .7s both}
-.slide.archive.active .doc.c{animation:document-c .76s .84s both}
-/* 6 — symptoms appear in order; central problem resolves only after the list. */
-.slide.issues.active .issue-list .issue-row{animation:move-in-soft .4s both}
-.slide.issues.active .issue-list .issue-row:nth-child(1){animation-delay:.26s}
-.slide.issues.active .issue-list .issue-row:nth-child(2){animation-delay:.40s}
-.slide.issues.active .issue-list .issue-row:nth-child(3){animation-delay:.54s}
-.slide.issues.active .issue-list .issue-row:nth-child(4){animation-delay:.68s}
-.slide.issues.active .issue-list .issue-row:nth-child(5){animation-delay:.82s}
-.slide.issues.active .issue-list .issue-row:nth-child(6){animation-delay:.96s}
-.slide.issues.active .issue-thesis{animation:panel-from-right .75s 1.12s both}
-.slide.issues.active .issue-bar{animation:draw-rule .7s 1.52s both;transform-origin:left center}
-/* 7 — turn disconnected work into a linked process. */
-.slide.flow-slide.active .flow-track.old{animation:fade-clarify .65s .18s both}
-.slide.flow-slide.active .flow-track.new{animation:move-in-soft .67s .6s both}
-.slide.flow-slide.active .flow-track.new .flow-steps-lg>div{animation:step-rise .48s both}
-.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(1){animation-delay:1.05s}
-.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(3){animation-delay:1.3s}
-.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(5){animation-delay:1.55s}
-.slide.flow-slide.active .flow-track.new .flow-steps-lg>div:nth-child(7){animation-delay:1.8s}
-.slide.flow-slide.active .loop-line svg path{stroke-dasharray:2200;stroke-dashoffset:2200;animation:trace-return 2s 1.55s ease-in-out forwards}
-.slide.flow-slide.active .loop-line span{animation:fade-clarify .55s 2.4s both}
-/* 8 — acknowledge the older approach without striking it out. */
-.slide.contrast-slide.active .pc-old{animation:fade-clarify .65s .28s both}
-.slide.contrast-slide.active .pc-arrow{animation:move-in-soft .57s .65s both}
-.slide.contrast-slide.active .pc-new{animation:panel-from-right .78s .9s both}
-.slide.contrast-slide.active .principle-banner{animation:move-in-soft .6s 1.22s both}
-/* 9 — eight principle nodes radiate, hub stays legible. */
-.slide.ophelia-slide.active .principle-row{animation:move-in-soft .45s both}
-.slide.ophelia-slide.active .principle-row:nth-child(1){animation-delay:.2s}
-.slide.ophelia-slide.active .principle-row:nth-child(2){animation-delay:.31s}
-.slide.ophelia-slide.active .principle-row:nth-child(3){animation-delay:.42s}
-.slide.ophelia-slide.active .principle-row:nth-child(4){animation-delay:.53s}
-.slide.ophelia-slide.active .principle-row:nth-child(5){animation-delay:.64s}
-.slide.ophelia-slide.active .principle-row:nth-child(6){animation-delay:.75s}
-.slide.ophelia-slide.active .principle-row:nth-child(7){animation-delay:.86s}
-.slide.ophelia-slide.active .principle-row:nth-child(8){animation-delay:.97s}
-.slide.ophelia-slide.active .ophelia-hub{animation:visual-enter .75s .48s both}
-.slide.ophelia-slide.active .ophelia-hub svg circle[fill="var(--accent)"]{animation:gold-signal 1.5s 1.12s ease-out both}
-/* 10 — three function modes are distinct, not three synchronized cards. */
-.slide.zones-slide.active .zone-col{animation:step-rise .68s both}
-.slide.zones-slide.active .zone-col:nth-child(1){animation-delay:.28s}
-.slide.zones-slide.active .zone-col:nth-child(2){animation-delay:.55s}
-.slide.zones-slide.active .zone-col:nth-child(3){animation-delay:.82s}
-.slide.zones-slide.active .zone-footer{animation:fade-clarify .65s 1.35s both}
-/* 11 — a six-step process; preserve arrow key as one slide per press. */
-.slide.workflow-slide.active .workflow-step{animation:step-rise .53s both}
-.slide.workflow-slide.active .workflow-step:nth-child(1){animation-delay:.25s}
-.slide.workflow-slide.active .workflow-step:nth-child(3){animation-delay:.49s}
-.slide.workflow-slide.active .workflow-step:nth-child(5){animation-delay:.73s}
-.slide.workflow-slide.active .workflow-step:nth-child(7){animation-delay:.97s}
-.slide.workflow-slide.active .workflow-step:nth-child(9){animation-delay:1.21s}
-.slide.workflow-slide.active .workflow-step:nth-child(11){animation-delay:1.45s}
-.slide.workflow-slide.active .workflow-arrow{animation:fade-clarify .38s both}
-.slide.workflow-slide.active .workflow-arrow:nth-child(2){animation-delay:.42s}
-.slide.workflow-slide.active .workflow-arrow:nth-child(4){animation-delay:.66s}
-.slide.workflow-slide.active .workflow-arrow:nth-child(6){animation-delay:.9s}
-.slide.workflow-slide.active .workflow-arrow:nth-child(8){animation-delay:1.14s}
-.slide.workflow-slide.active .workflow-arrow:nth-child(10){animation-delay:1.38s}
-.slide.workflow-slide.active .human-step{animation:human-highlight .62s 1.2s both}
-.slide.workflow-slide.active .decision-quote{animation:move-in-soft .55s 1.85s both}
-/* 12 — keep, refine and complete are suggested in sequence. */
-.slide.continuity-slide.active .continuity-source{animation:visual-enter .8s .3s both}
-.slide.continuity-slide.active .continuity-path{animation:move-in-soft .6s .85s both}
-.slide.continuity-slide.active .continuity-choices>div{animation:step-rise .55s both}
-.slide.continuity-slide.active .continuity-choices>div:nth-child(1){animation-delay:1.04s}
-.slide.continuity-slide.active .continuity-choices>div:nth-child(2){animation-delay:1.31s}
-.slide.continuity-slide.active .continuity-choices>div:nth-child(3){animation-delay:1.58s}
-.slide.continuity-slide.active .continuity-line{animation:fade-clarify .55s 1.95s both}
-/* 13 — the seven specific domains accumulate, then reveal one shared framework. */
-.slide.topics-slide.active .topic-line{animation:move-in-soft .38s both}
-.slide.topics-slide.active .topic-line:nth-child(1){animation-delay:.20s}
-.slide.topics-slide.active .topic-line:nth-child(2){animation-delay:.33s}
-.slide.topics-slide.active .topic-line:nth-child(3){animation-delay:.46s}
-.slide.topics-slide.active .topic-line:nth-child(4){animation-delay:.59s}
-.slide.topics-slide.active .topic-line:nth-child(5){animation-delay:.72s}
-.slide.topics-slide.active .topic-line:nth-child(6){animation-delay:.85s}
-.slide.topics-slide.active .topic-line:nth-child(7){animation-delay:.98s}
-.slide.topics-slide.active .topics-aside{animation:panel-from-right .72s 1.1s both}
-/* 14 — safety limits have deliberate, sequential emphasis. */
-.slide.guard-slide.active .guard-symbol{animation:safety-signal .8s .27s both}
-.slide.guard-slide.active .guard-rule{animation:move-in-soft .58s both}
-.slide.guard-slide.active .guard-rule:nth-child(1){animation-delay:.5s}
-.slide.guard-slide.active .guard-rule:nth-child(2){animation-delay:.82s}
-.slide.guard-slide.active .guard-rule:nth-child(3){animation-delay:1.14s}
-.slide.guard-slide.active .guard-strap{animation:fade-clarify .55s 1.63s both}
-/* 15 — a shared knowledge core splits toward three distinct implementation paths. */
-.slide.branch-slide.active .branch-core{animation:visual-enter .75s .26s both}
-.slide.branch-slide.active .branch-connector{animation:branch-open .7s .7s both;transform-origin:top center}
-.slide.branch-slide.active .branch-targets>div{animation:step-rise .58s both}
-.slide.branch-slide.active .branch-targets>div:nth-child(1){animation-delay:1.0s}
-.slide.branch-slide.active .branch-targets>div:nth-child(2){animation-delay:1.22s}
-.slide.branch-slide.active .branch-targets>div:nth-child(3){animation-delay:1.44s}
-.slide.branch-slide.active .branch-note{animation:fade-clarify .6s 1.8s both}
-/* 16 — lines draw the feedback loop in the finished, tested SVG geometry. */
-.slide.final-slide.active .final-copy p{animation:move-in-soft .72s .22s both}
-.slide.final-slide.active .final-copy blockquote{animation:step-rise .8s 1s both}
-.slide.final-slide.active .cycle-flow-svg{animation:visual-enter .8s .28s both}
-.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(1){stroke-dasharray:45;stroke-dashoffset:45;animation:trace-connection .5s 1.0s linear forwards}
-.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(2){stroke-dasharray:45;stroke-dashoffset:45;animation:trace-connection .5s 1.55s linear forwards}
-.slide.final-slide.active .cycle-flow-svg g[stroke] > path:nth-child(3){stroke-dasharray:650;stroke-dashoffset:650;animation:trace-connection 1.05s 2.1s ease-in-out forwards}
-/* Focused keyframes: animation settles; only one ambient glow continues on the cover. */
-@keyframes scene-appear{from{opacity:.55}to{opacity:1}}
-@keyframes scene-underline{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:.65}}
-@keyframes move-in-soft{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
-@keyframes move-in-headline{from{opacity:0;transform:translateY(23px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes headline-glow{from{text-shadow:0 0 16px rgba(220,178,113,.43)}to{text-shadow:0 0 0 transparent}}
-@keyframes draw-rule{from{transform:scaleX(0);opacity:.2}to{transform:scaleX(1);opacity:1}}
-@keyframes subtle-light{0%,100%{opacity:.10}50%{opacity:.58}}
-@keyframes visual-enter{from{opacity:0;translate:0 10px;filter:brightness(.8)}to{opacity:1;translate:0 0;filter:brightness(1)}}
-@keyframes gold-signal{0%{filter:drop-shadow(0 0 0 rgba(249,218,142,0))}45%{filter:drop-shadow(0 0 8px rgba(249,218,142,.8))}100%{filter:drop-shadow(0 0 0 rgba(249,218,142,0))}}
-@keyframes fade-clarify{from{opacity:0}to{opacity:1}}
-@keyframes grow-vertical{from{transform:scaleY(0);opacity:.3}to{transform:scaleY(1);opacity:1}}
-@keyframes panel-from-left{from{opacity:0;transform:translateX(-27px)}to{opacity:1;transform:translateX(0)}}
-@keyframes panel-from-right{from{opacity:0;transform:translateX(27px)}to{opacity:1;transform:translateX(0)}}
-@keyframes document-a{from{opacity:0;transform:translate(36px,25px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(-11deg)}}
-@keyframes document-b{from{opacity:0;transform:translate(12px,24px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(5deg)}}
-@keyframes document-c{from{opacity:0;transform:translate(-25px,20px) rotate(0)}to{opacity:1;transform:translate(0,0) rotate(13deg)}}
-@keyframes step-rise{from{opacity:0;transform:translateY(18px) scale(.988)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes trace-return{from{stroke-dashoffset:2200}to{stroke-dashoffset:0}}
-@keyframes safety-signal{0%{opacity:0;transform:scale(.78)}65%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
-@keyframes branch-open{from{opacity:0;transform:scaleY(.1)}to{opacity:1;transform:scaleY(1)}}
-@keyframes human-highlight{from{opacity:0;transform:translateY(16px);box-shadow:0 0 0 0 rgba(192,144,72,.3)}to{opacity:1;transform:translateY(0);box-shadow:0 0 0 0 transparent}}
-@keyframes trace-connection{to{stroke-dashoffset:0}}
-/* The motion setting and OS accessibility settings take precedence. */
-body.motion-off .slide,body.motion-off .slide *,body.motion-off .slide::before,body.motion-off .slide::after{animation:none!important;transition:none!important;}
-@media(prefers-reduced-motion:reduce){.slide,.slide *,.slide::before,.slide::after{animation:none!important;transition:none!important}}
-@media print{.slide,.slide *, .slide::before,.slide::after{animation:none!important;transition:none!important}}
-</style></head><body><main id="frame"><section class="slide dark cover active" aria-label="投影片 1"><p class="chapter">序章 · 造鏟與掘金</p><h1>一把鏟子，<br><em>挖出健康的可能。</em></h1>
-<div class="cover-layout"><div class="cover-copy"><p class="overline">HEALTH PROMOTION / FIELD NOTES</p><div class="cover-rule"></div><p class="cover-slogan">AI 接住重複工作，<br>人保有教育判斷。</p><p class="cover-caption">健促 AI 健多多　·　健康促進學校的共創實踐</p></div><div class="shovel-wrap"><svg class="shovel-svg" viewBox="0 0 650 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" >
-<defs><linearGradient id="metalA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7dfb1"/><stop offset=".52" stop-color="#ba8c52"/><stop offset="1" stop-color="#816347"/></linearGradient></defs>
-<g transform="rotate(27 320 250)"><path d="M295 68v-21c0-13 9-22 22-22h8c13 0 22 9 22 22v21" fill="none" stroke="#d6ad72" stroke-width="19" stroke-linecap="round"/><path d="M321 71V330" stroke="#c99d68" stroke-width="24" stroke-linecap="round"/><path d="M265 321q55 17 110 0l-8 69q-10 33-47 62-37-29-47-62Z" fill="url(#metalA)" stroke="#ffdf9a" stroke-width="4"/><path d="M320 338v89" stroke="#f8e0af" stroke-width="3"/></g>
-<g stroke="#a7b09b" stroke-opacity=".25" fill="none"><circle cx="320" cy="245" r="210"/><circle cx="320" cy="245" r="164" stroke-dasharray="3 12"/></g>
-<g fill="#ebc07b"><circle cx="486" cy="98" r="5"/><circle cx="146" cy="359" r="3"/><path d="M468 389v20m-10-10h20" stroke="#ebc07b" stroke-width="2"/></g>
-</svg><span class="art-caption">TOOL 01 / HEALTH DODO</span></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>01 / 16</b></div></section><section class="slide paper terrain " aria-label="投影片 2"><p class="chapter">01 · 設計哲學</p><h1>造鏟的人，<br>不替大家決定<span class="accent">往哪裡挖。</span></h1>
-<div class="landscape-layout"><div class="landscape-visual"><svg class="geology-svg" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<defs>
-  <pattern id="soilDotsV7" width="21" height="17" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r="1" fill="#6a5547" opacity=".32"/></pattern>
-  <linearGradient id="geoMetalV7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9f0e4"/><stop offset=".43" stop-color="#b2beb6"/><stop offset="1" stop-color="#6e817c"/></linearGradient>
-  <linearGradient id="geoWoodV7" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#90683e"/><stop offset=".48" stop-color="#d1a573"/><stop offset="1" stop-color="#855b36"/></linearGradient>
-  <linearGradient id="geoGoldV7" x1="0" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#f7d98d"/><stop offset="1" stop-color="#c89e50"/></linearGradient>
-</defs>
-<rect x="0" y="0" width="700" height="500" fill="#eadfce"/>
-<path d="M0 155 Q99 136 198 151 T397 147 T550 158 T700 145 V500H0Z" fill="#a88161"/>
-<path d="M0 215 Q113 228 235 207 T462 225 T700 207 V500H0Z" fill="#765847"/>
-<path d="M0 302 Q111 285 236 303 T467 292 T700 314 V500H0Z" fill="#504537"/>
-<path d="M0 382 Q114 361 228 379 T473 370 T700 383 V500H0Z" fill="#293d36"/>
-<path d="M0 155 Q99 136 198 151 T397 147 T550 158 T700 145 V500H0Z" fill="url(#soilDotsV7)" opacity=".56"/>
-<path d="M0 144 Q101 123 198 143 T398 138 T551 148 T700 134" fill="none" stroke="#779381" stroke-width="11"/>
-<!-- A single structurally coherent D-grip shovel, leaning slightly into the soil -->
-<g transform="translate(378 16) rotate(-11 0 192)">
-  <!-- D-grip with a visible cut-out -->
-  <path d="M-28 56 V32 C-28 17 -17 7 0 7 C17 7 28 17 28 32 V56 Z" fill="#b58a57" stroke="#845b35" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M-15 44 V32 C-15 25 -9 20 0 20 C9 20 15 25 15 32 V44 Z" fill="#eadfce" stroke="#eadfce" stroke-width="2"/>
-  <path d="M-28 53 H28" stroke="#805833" stroke-width="9" stroke-linecap="round"/>
-  <!-- Single continuous wooden handle and reinforced ferrule -->
-  <rect x="-9" y="59" width="18" height="221" rx="7" fill="url(#geoWoodV7)" stroke="#8f6745" stroke-width="2"/>
-  <path d="M-4 65 V269" stroke="#f4d5a2" stroke-width="2.4" opacity=".67"/>
-  <rect x="-13" y="266" width="26" height="34" rx="5" fill="#788f89" stroke="#dce9dc" stroke-width="2.2"/>
-  <!-- Spade blade with broad shoulders and tapered digging tip -->
-  <path d="M-47 289 Q0 301 47 289 L42 340 Q28 371 0 387 Q-28 371 -42 340 Z" fill="url(#geoMetalV7)" stroke="#f4f3e7" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M0 302 V372" stroke="#e8f0e6" stroke-width="3" opacity=".83"/>
-  <path d="M-36 307 Q0 318 36 307" stroke="#58716b" stroke-width="2" fill="none" opacity=".47"/>
-</g>
-<!-- Gold deposits are separate from the shovel, not attached to its blade -->
-<g fill="url(#geoGoldV7)" stroke="#f9e2a6" stroke-width="4" stroke-linejoin="round">
-  <path d="M132 333 L160 312 L198 323 L211 353 L184 374 L146 362Z"/>
-  <path d="M476 396 L506 376 L546 389 L558 422 L529 444 L486 432Z"/>
-  <path d="M527 250 L546 239 L565 245 L571 261 L555 273 L535 269Z"/>
-</g>
-</svg><div class="landscape-cap">每一所學校，都是不同的土地。</div></div>
-<div class="landscape-list"><div><span>01　工具</span><b>中央核心團隊</b><small>整合原則與方法，打造好用的鏟子</small></div><div><span>02　行動</span><b>第一線教育夥伴</b><small>理解校情、選擇策略、共同實踐</small></div><div><span>03　成果</span><b>親師生健康與福祉</b><small>真正值得被挖掘的黃金</small></div></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>02 / 16</b></div></section><section class="slide dark motion-slide " aria-label="投影片 3"><p class="chapter">01 · 設計哲學</p><h1>車可以協助駕駛，<br>但目的地由<span class="accent">誰決定？</span></h1>
-<div class="road-area"><svg class="road-svg" viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" >
-<path d="M22 245C130 225 168 73 323 109s163 192 330 150 129-140 205-139" stroke="#34413d" stroke-width="72" stroke-linecap="round" fill="none"/>
-<path d="M22 245C130 225 168 73 323 109s163 192 330 150 129-140 205-139" stroke="#d8a76a" stroke-width="4" stroke-dasharray="17 20" stroke-linecap="round" fill="none"/>
-<g class="drive-car"><rect x="-24" y="-14" width="50" height="28" rx="8" fill="#e5be81"/><rect x="-10" y="-10" width="18" height="20" rx="3" fill="#142721"/><circle cx="-13" cy="16" r="5" fill="#1a2723"/><circle cx="15" cy="16" r="5" fill="#1a2723"/></g>
-<g transform="translate(853 78)"><path d="M0 0v40" stroke="#d4b07d" stroke-width="3"/><path d="M0 0h40l-10 15H0Z" fill="#e0b36e"/></g>
-</svg></div><div class="driver-roles"><div><span class="role-marker ai">A</span><h3>AI 能協助</h3><p>辨識資訊、比較路線、處理重複操作</p></div><div class="role-divider"></div><div><span class="role-marker human">H</span><h3>人必須保留</h3><p>設定目標、評估情境、做出最後選擇</p></div></div><p class="footnote">* 此為駕駛輔助與自動駕駛的分工比喻，並非指所有車輛已可完全自主駕駛。</p><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>03 / 16</b></div></section><section class="slide paper split-slide " aria-label="投影片 4"><p class="chapter">01 · 設計哲學</p><h1>把重複工作交給 AI，<br>把<span class="accent">教育決定</span>留給人。</h1>
-<div class="split-panels"><div class="panel-ai"><strong>AI</strong><span>承接繁瑣</span><ol><li>行政庶務、資料整理</li><li>制式分析、方案草擬</li><li>成果彙整、經驗轉譯</li></ol></div><div class="panel-human"><strong>HUMAN</strong><span>維持專業</span><ol><li>理解學生與校園脈絡</li><li>選擇策略、凝聚共識</li><li>實踐、修正並承擔責任</li></ol></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>04 / 16</b></div></section><section class="slide paper archive " aria-label="投影片 5"><p class="chapter">02 · 現場痛點</p><h1>新承辦人接手的，<br>常常是<span class="accent">檔案</span>而不是<span class="accent">經驗</span>。</h1>
-<div class="archive-layout"><div class="archive-quote"><blockquote>「知道去年做了什麼，<br>不代表知道<strong>為什麼</strong>這樣做。」</blockquote><div class="archive-meta"><span>計畫書</span><span>成果照片</span><span>資料表格</span><span>行政交接</span></div></div><div class="archive-art"><div class="photo-slice" style="background-image:url('https://images.unsplash.com/photo-1765867967050-30db3e7a3be8?auto=format&fit=crop&w=1100&q=80')" aria-hidden="true"></div><div class="doc-stack"><article class="doc a"><small>FILE 01 / PLAN</small><b>年度健康促進計畫</b><i></i><i></i><i></i></article><article class="doc b"><small>FILE 02 / RESULT</small><b>成果資料與照片</b><i></i><i></i><i></i></article><article class="doc c"><small>FILE 03 / HANDOVER</small><b>承辦交接紀錄</b><i></i><i></i><i></i></article></div></div></div><p class="photo-credit">照片素材：Jakub Żerdzicki / Unsplash（連線時載入；離線仍有文件插畫）</p><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>05 / 16</b></div></section><section class="slide dark issues " aria-label="投影片 6"><p class="chapter">02 · 現場痛點</p><h1>六個現場卡點，<br>指向<span class="accent">同一個問題。</span></h1>
-<div class="issue-layout"><div class="issue-list"><div class="issue-row"><span>01</span><b>從哪裡開始</b><small>新承辦人缺少起點</small></div><div class="issue-row"><span>02</span><b>資料如何整理</b><small>相同資料反覆轉換</small></div><div class="issue-row"><span>03</span><b>有數字卻沒有方向</b><small>資料未必轉化為策略</small></div><div class="issue-row"><span>04</span><b>理念難以落地</b><small>理解原則但難操作</small></div><div class="issue-row"><span>05</span><b>怎麼證明有效</b><small>活動數量不等於健康改變</small></div><div class="issue-row"><span>06</span><b>交接後又重來</b><small>決策理由與經驗流失</small></div></div><div class="issue-thesis"><span class="issue-title">核心問題</span><p>不是事情太多，<br>而是<span>工作彼此斷裂。</span></p><div class="issue-bar"></div><small>資料、活動、成果、傳承，應是同一條路徑。</small></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>06 / 16</b></div></section><section class="slide paper flow-slide " aria-label="投影片 7"><p class="chapter">02 · 現場痛點</p><h1>從零散工作，<br>走向<span class="accent">可延續的循環。</span></h1>
-<div class="flow-compare"><div class="flow-track old"><span class="flow-label">BEFORE</span><div class="flow-steps-lg"><div>資料</div><i>→</i><div>活動</div><i>→</i><div>成果</div><i>→</i><div>交接</div></div><small>如果缺少連結，每年都可能重新起步。</small></div><div class="flow-track new"><span class="flow-label">AFTER</span><div class="flow-steps-lg"><div>需求診斷</div><i>→</i><div>策略形成</div><i>→</i><div>行動實踐</div><i>→</i><div>成果精進</div></div><small>每一年的回饋，都是下一年度的起點。</small></div></div><div class="loop-line"><svg viewBox="0 0 1200 100" aria-hidden="true"><path d="M1120 6Q1130 80 1000 80H190Q70 80 80 6" stroke="currentColor" stroke-width="2" fill="none"/><path d="m67 20 13-17 12 17" stroke="currentColor" stroke-width="2" fill="none"/></svg><span>反思 · 回饋 · 傳承</span></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>07 / 16</b></div></section><section class="slide dark contrast-slide " aria-label="投影片 8"><p class="chapter">03 · 造鏟的方法</p><h1>八大原則，<br>不是活動完成後的<span class="accent">勾選清單。</span></h1>
-<div class="principle-contrast"><div class="pc-old"><span>事後對照</span><strong>先辦活動</strong><p>再回頭檢查符合哪些原則</p></div><div class="pc-arrow">→</div><div class="pc-new"><span>設計起點</span><strong>先理解需求</strong><p>讓原則影響規劃、執行、評量</p></div></div><div class="principle-banner">Ophelia 八大原則　／　從報告語言，轉為工作方法</div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>08 / 16</b></div></section><section class="slide paper ophelia-slide " aria-label="投影片 9"><p class="chapter">03 · 造鏟的方法</p><h1>把八大原則，<br>轉化為<span class="accent">實際可操作的事。</span></h1>
-<div class="ophelia-layout"><div><div class="principle-row"><span>01</span><div><b>聚焦結果</b><small>目標與成果連結</small></div></div><div class="principle-row"><span>02</span><div><b>秉持公平</b><small>看見差異與障礙</small></div></div><div class="principle-row"><span>03</span><div><b>在地智慧導向</b><small>善用校本經驗</small></div></div><div class="principle-row"><span>04</span><div><b>診斷在地需求</b><small>從真實資料出發</small></div></div></div><div class="ophelia-hub"><svg viewBox="0 0 300 320" aria-hidden="true"><circle cx="150" cy="157" r="119" fill="none" stroke="currentColor" stroke-opacity=".35"/><circle cx="150" cy="157" r="92" fill="none" stroke="currentColor" stroke-dasharray="4 9" stroke-opacity=".6"/><circle cx="150" cy="157" r="58" fill="var(--accent)" opacity=".15"/><circle cx="269.0" cy="157.0" r="7" fill="var(--accent)"/><circle cx="234.14570696119915" cy="241.14570696119915" r="7" fill="var(--accent)"/><circle cx="150.0" cy="276.0" r="7" fill="var(--accent)"/><circle cx="65.85429303880085" cy="241.14570696119915" r="7" fill="var(--accent)"/><circle cx="31.0" cy="157.00000000000003" r="7" fill="var(--accent)"/><circle cx="65.85429303880082" cy="72.85429303880085" r="7" fill="var(--accent)"/><circle cx="149.99999999999997" cy="38.0" r="7" fill="var(--accent)"/><circle cx="234.14570696119915" cy="72.85429303880082" r="7" fill="var(--accent)"/></svg><strong>Ophelia</strong><span>以人為本、由下而上</span></div><div><div class="principle-row"><span>05</span><div><b>共同設計</b><small>讓利害關係人參與</small></div></div><div class="principle-row"><span>06</span><div><b>反應能力</b><small>依回饋調整</small></div></div><div class="principle-row"><span>07</span><div><b>跨系統應用</b><small>跨處室與社區合作</small></div></div><div class="principle-row"><span>08</span><div><b>永續性</b><small>累積可傳承經驗</small></div></div></div></div><p class="ophelia-foot">AI 負責整理分析，真實意見仍須由學校蒐集與確認。</p><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>09 / 16</b></div></section><section class="slide dark zones-slide " aria-label="投影片 10"><p class="chapter">04 · 健多多功能</p><h1>一把鏟子，<br><span class="accent">三種工作情境。</span></h1><div class="zones"><div class="zone-col"><span class="zone-no">01</span><small>DEMONSTRATE</small><b>示範區</b><strong>看懂</strong><p>用完整案例看見需求、策略與成果如何連結</p></div><div class="zone-col"><span class="zone-no">02</span><small>PRACTICE</small><b>實作區</b><strong>做到</strong><p>從校情、資料與資源開始，產出可行方案</p></div><div class="zone-col"><span class="zone-no">03</span><small>STRENGTHEN</small><b>精進區</b><strong>做得更好</strong><p>延續既有計畫，找出可以改善的環節</p></div></div><div class="zone-footer">同一套健康促進專業架構，回應不同階段的工作需求。</div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>10 / 16</b></div></section><section class="slide paper workflow-slide " aria-label="投影片 11"><p class="chapter">04 · 健多多功能</p><h1>從校情到方案，<br>AI 與教師<span class="accent">在哪裡交棒？</span></h1>
-<div class="workflow-case"><span>示例議題</span><strong>視力保健</strong><p>從真實校情起步，而不是先想要辦什麼活動。</p></div><div class="workflow-steps"><div class="workflow-step "><span class="num">01</span><b>輸入校情</b><small>資料與資源</small></div><div class="workflow-arrow">→</div><div class="workflow-step "><span class="num">02</span><b>五群體 SWOT</b><small>彙整不同觀點</small></div><div class="workflow-arrow">→</div><div class="workflow-step "><span class="num">03</span><b>收斂問題</b><small>找出優先課題</small></div><div class="workflow-arrow">→</div><div class="workflow-step "><span class="num">04</span><b>盤點策略</b><small>提出不同路徑</small></div><div class="workflow-arrow">→</div><div class="workflow-step human-step"><span class="num">05</span><b>教師決策</b><small>核對與選擇</small></div><div class="workflow-arrow">→</div><div class="workflow-step "><span class="num">06</span><b>形成方案</b><small>實作與評量</small></div></div><div class="decision-quote"><strong>關鍵停靠點</strong><span>AI 提出可能性，教師選擇適切性。</span></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>11 / 16</b></div></section><section class="slide dark continuity-slide " aria-label="投影片 12"><p class="chapter">04 · 健多多功能</p><h1>已經有計畫，<br><span class="accent">不必從頭來過。</span></h1>
-<div class="continuity-layout"><div class="continuity-source"><span>INPUT / 既有計畫</span><div class="minidoc"><b>視力保健推動計畫</b><i></i><i></i><i></i><i></i><small>活動・指標・成果・限制</small></div></div><div class="continuity-path"><svg viewBox="0 0 120 200" aria-hidden="true"><path d="M15 100h84M84 87l15 13-15 13" stroke="currentColor" fill="none" stroke-width="4"/></svg></div><div class="continuity-choices"><div><span>KEEP</span><b>保留</b><p>值得延續的有效做法</p></div><div><span>REFINE</span><b>調整</b><p>改善既有活動品質</p></div><div><span>COMPLETE</span><b>補足</b><p>完善證據與追蹤機制</p></div></div></div><div class="continuity-line">精進不等於不斷增加活動，也不代表推翻已經核定的方案。</div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>12 / 16</b></div></section><section class="slide paper topics-slide " aria-label="投影片 13"><p class="chapter">04 · 健多多功能</p><h1>七大議題，<br>共享<span class="accent">一套在地實踐思維。</span></h1>
-<div class="topics-layout"><div class="topics-list"><div class="topic-line"><span>01</span><strong>視力保健</strong><span class="topic-dot"></span></div><div class="topic-line"><span>02</span><strong>口腔保健</strong><span class="topic-dot"></span></div><div class="topic-line"><span>03</span><strong>全民健保</strong><span class="topic-dot"></span></div><div class="topic-line"><span>04</span><strong>健康體位</strong><span class="topic-dot"></span></div><div class="topic-line"><span>05</span><strong>菸檳防制</strong><span class="topic-dot"></span></div><div class="topic-line"><span>06</span><strong>全面性教育</strong><span class="topic-dot"></span></div><div class="topic-line"><span>07</span><strong>正向心理健康促進</strong><span class="topic-dot"></span></div></div><div class="topics-aside"><span>7 / 1</span><p>七種議題專業<br>一套分析與決策流程</p><div class="topics-small">診斷需求　·　形成策略　·　成果精進</div></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>13 / 16</b></div></section><section class="slide dark guard-slide " aria-label="投影片 14"><p class="chapter">04 · 健多多功能</p><h1>工具可以提出建議，<br>但不能<span class="accent">製造證據。</span></h1>
-<div class="guard-layout"><div class="guard-symbol">!</div><div class="guard-rules"><div class="guard-rule"><span>01</span><div><b>不拿學生個資冒險</b><small>先去識別化，再評估是否需要輸入</small></div></div><div class="guard-rule"><span>02</span><div><b>不把推論當事實</b><small>AI 建議、假設、證據必須清楚區分</small></div></div><div class="guard-rule"><span>03</span><div><b>不讓工具代替決策</b><small>教師、行政與利害關係人保有最後決定權</small></div></div></div></div><div class="guard-strap">共創必須有真實的人參與；AI 不能憑空生成共識與成效。</div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>14 / 16</b></div></section><section class="slide paper branch-slide " aria-label="投影片 15"><p class="chapter">05 · 未來發展</p><h1>同一套專業核心，<br>可以有<span class="accent">三條延續路徑。</span></h1>
-<div class="branch-core"><span>KNOWLEDGE CORE</span><strong>健康促進知識 × 八大原則 × 分析流程</strong></div>
-<div class="branch-connector"><i></i><i></i><i></i></div>
-<div class="branch-targets"><div><span>01 / 跨平台</span><b>Gemini Gem</b><small>移轉指令與知識，維持熟悉的使用方式</small></div><div><span>02 / 原平台</span><b>ChatGPT Plugin</b><small>讓功能延續於 ChatGPT 服務生態</small></div><div><span>03 / 可攜性</span><b>AI Skill</b><small>保存專業工作流程與可移植的技能內容</small></div></div><p class="branch-note">目前為發展路徑規劃；實際開放、免費權限及相容性仍需確認。</p><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>15 / 16</b></div></section><section class="slide dark final-slide " aria-label="投影片 16"><p class="chapter">結語 · 共創共學</p><h1>一把鏟子，<br><span class="accent">持續挖出健康的可能。</span></h1>
-<div class="final-layout"><div class="final-copy"><p>中央打造工具，第一線實踐；<br>每一次在地探索的經驗，<br>都讓下一把鏟子更好用。</p><blockquote>把時間還給教育，<br>把決定留給人。</blockquote></div><div class="final-visual cycle-visual"><svg class="cycle-flow-svg" viewBox="0 0 680 455" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="中央團隊研發工具，第一線夥伴在地實踐，經驗回饋再改善工具的循環">
-<defs><marker id="cycleArrowV7" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto"><path d="M0 0 L9 5 L0 10Z" fill="#d9ad70"/></marker></defs>
-<!-- Precise card-to-card connections and an independent return channel -->
-<g fill="none" stroke="#d9ad70" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M350 120 V161" marker-end="url(#cycleArrowV7)"/>
-  <path d="M350 266 V305" marker-end="url(#cycleArrowV7)"/>
-  <path d="M194 359 H111 Q84 359 84 332 V80 Q84 56 111 56 H191" marker-end="url(#cycleArrowV7)"/>
-</g>
-<g font-family="Noto Sans TC, PingFang TC, Microsoft JhengHei, sans-serif" text-anchor="middle">
-  <rect x="195" y="18" width="310" height="102" rx="12" fill="#204c3d" stroke="#e1ba80" stroke-width="2"/>
-  <text x="350" y="63" fill="#f6f1e8" font-size="29" font-weight="700">中央團隊</text>
-  <text x="350" y="98" fill="#bbcfbf" font-size="21">研發工具</text>
-  <rect x="195" y="164" width="310" height="102" rx="12" fill="#204c3d" stroke="#e1ba80" stroke-width="2"/>
-  <text x="350" y="209" fill="#f6f1e8" font-size="29" font-weight="700">第一線夥伴</text>
-  <text x="350" y="244" fill="#bbcfbf" font-size="21">在地實踐</text>
-  <rect x="195" y="308" width="310" height="102" rx="12" fill="#204c3d" stroke="#e1ba80" stroke-width="2"/>
-  <text x="350" y="353" fill="#f6f1e8" font-size="29" font-weight="700">經驗回饋</text>
-  <text x="350" y="388" fill="#bbcfbf" font-size="21">案例與建議</text>
-  <text x="350" y="447" fill="#d9ad70" font-size="23" letter-spacing="4">共創 · 共學 · 精進</text>
-  <text x="64" y="225" fill="#c3d0c5" font-size="17" transform="rotate(-90 64 225)">精進下一版</text>
-</g>
-</svg></div></div><div class="page-footer"><span>HEALTH DODO / 共創共學 <span class="speaker-credit">板橋國中｜高勳頊老師</span></span><b>16 / 16</b></div></section></main><nav id="controls" aria-label="簡報控制">
-<button id="prev" aria-label="上一頁" title="上一頁（←）">←</button>
-<span id="counter" aria-live="polite"></span>
-<button id="next" aria-label="下一頁" title="下一頁（→）">→</button>
-<button id="fullBtn" title="全螢幕（F）">全螢幕</button>
-<div class="more-wrap">
-<button id="moreBtn" aria-haspopup="true" aria-controls="moreMenu" aria-expanded="false" title="更多功能">更多 <span aria-hidden="true">▴</span></button>
-<div id="moreMenu" class="more-menu" role="group" aria-label="更多簡報功能" hidden>
-<button id="overviewBtn" type="button">投影片總覽</button>
-<button id="notesBtn" type="button" aria-pressed="false">講者備忘</button>
-<button id="motionBtn" type="button" aria-pressed="false">關閉動畫</button>
-<button id="cleanBtn" type="button">隱藏控制列</button>
-<button id="printBtn" type="button">列印／PDF</button>
-<a class="share-control" id="strategyShareLink" href="./share/" target="_blank" rel="noopener noreferrer" aria-label="開啟策略共創分享區">策略分享 ↗</a>
-</div>
-</div>
-</nav><div id="progress"></div><aside id="notes" hidden><h2>講者備忘</h2><p id="noteText"></p></aside><dialog id="overview"><h2>16 頁簡報總覽</h2><div id="overviewList"></div><button id="overviewClose">關閉</button></dialog><script id="notesData" type="application/json">["先用鏟子的隱喻開場。此工具並非代替各校決定，而是讓現場夥伴有更省力的專業工具。", "造鏟=中央、使用鏟子=第一線、土地=校情、黃金=親師生的健康與福祉；比喻不是商業出售。", "把開場的鏟子和自動駕駛連起來：運算與操作可以交給系統，目的與責任不能。", "重點不是AI替代教師，而是為老師留出時間理解學生與家長、作價值判斷。", "這頁讓承辦人代入：即使留下文件，當年為什麼選擇活動、遇過什麼問題，未必有被妥善記下。", "這六項是健多多欲回應的常見工作情境，不是全國盛行率調查。左側可邀現場舉手回應。", "兩個流程形成清晰對照。重要的是從資料到決策再到評估形成循環。", "請提醒參與者：不是為了八大原則而新增活動，是用原則問我們的流程有沒有反映真實需求。", "八大原則用語依健康促進學校研習用語。AI不能憑空生成真實利害關係人的意見。", "健多多示範、實作、精進三個功能區。不要讓這頁變成產品型錄；要說清楚進場條件不同。", "第5步是人為決策的停靠點，課程應鼓勵教師說明自己為什麼選擇某一策略。", "健多多分析現有計畫，優先協助執行品質、分眾支持和評量，而不是要求額外辦新活動。", "七項健康促進議題均已設計健多多版本；共用工作流程，仍保有每項議題的內容專業。", "使用之前，務必強調學生資料保護與生成內容的實證限制；AI的便利不能掩蓋責任。", "若原有入口停用，核心設計可轉成Gem、Plugin及Skill。此為規劃，而非三種服務皆已上線。", "最後回到開頭隱喻：工具不是要取代判斷，而是形成中央與地方的共創循環。"]</script><script>
-const slides=[...document.querySelectorAll('.slide')];const notes=JSON.parse(document.querySelector('#notesData').textContent);const $=id=>document.getElementById(id);let index=0;let safe=false;
-function size(){document.documentElement.style.setProperty('--scale',Math.min(window.innerWidth/1600,window.innerHeight/900));}
-function go(n){const i=Math.max(0,Math.min(slides.length-1,n));index=i;slides.forEach((s,j)=>{s.classList.toggle('active',i===j);s.setAttribute('aria-hidden',String(i!==j));});$('counter').textContent=`${i+1} / ${slides.length}`;$('prev').disabled=i===0;$('next').disabled=i===slides.length-1;$('noteText').textContent=notes[i];$('progress').style.width=`${(i+1)/slides.length*100}%`;document.title=`${i+1}/${slides.length}｜健多多·一把鏟子，挖出健康的可能`;
- document.querySelectorAll('#overviewList button').forEach((b,k)=>b.classList.toggle('current',k===i));try{history.replaceState(null,'',`#${i+1}`);}catch(e){}}
-function toggleNotes(){$('notes').hidden=!$('notes').hidden;$('notesBtn').setAttribute('aria-pressed',String(!$('notes').hidden));}
-function overview(){$('overview').showModal();}
-function fullscreen(){if(document.fullscreenElement){document.exitFullscreen?.()}else document.documentElement.requestFullscreen?.().catch(()=>{});}
-function closeMore(){ $('moreMenu').hidden=true; $('moreBtn').setAttribute('aria-expanded','false'); }
-function toggleMore(){
- const open=$('moreMenu').hidden;
- $('moreMenu').hidden=!open;
- $('moreBtn').setAttribute('aria-expanded',String(open));
-}
-$('moreBtn').onclick=(e)=>{e.stopPropagation();toggleMore();};
-document.addEventListener('pointerdown',e=>{if(!$('controls').contains(e.target))closeMore();});
-$('prev').onclick=()=>{closeMore();go(index-1)};
-$('next').onclick=()=>{closeMore();go(index+1)};
-$('notesBtn').onclick=()=>{closeMore();toggleNotes()};
-function setMotionDisabled(disabled){
- document.body.classList.toggle('motion-off',disabled);
- $('motionBtn').textContent=disabled?'開啟動畫':'關閉動畫';
- $('motionBtn').setAttribute('aria-pressed',String(disabled));
- try {localStorage.setItem('dodo-motion-off', disabled?'1':'0')}catch(e){}
-}
-try {if(localStorage.getItem('dodo-motion-off')==='1')setMotionDisabled(true)}catch(e){}
-$('motionBtn').onclick=()=>{setMotionDisabled(!document.body.classList.contains('motion-off'));closeMore()};
-
-$('overviewBtn').onclick=()=>{closeMore();overview()};
-$('fullBtn').onclick=()=>{closeMore();fullscreen()};
-$('cleanBtn').onclick=()=>{closeMore();document.body.classList.toggle('clean')};
-$('printBtn').onclick=()=>{closeMore();window.print()};
-$('strategyShareLink').addEventListener('click',closeMore);
-$('overviewClose').onclick=()=>$('overview').close();
-slides.forEach((s,i)=>{const b=document.createElement('button');b.textContent=`${String(i+1).padStart(2,'0')}　${s.querySelector('h1').innerText.replace(/\n/g,' ')}`;b.onclick=()=>{go(i);$('overview').close();};$('overviewList').appendChild(b);});
-window.addEventListener('resize',size);window.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMore();return;}if(document.querySelector('dialog[open]'))return;if(e.target.closest('input,textarea,select'))return;const k=e.key.toLowerCase();if(e.target.closest('button,a')&&[' ','enter'].includes(k))return;if(['arrowright','arrowdown','pagedown',' ','enter'].includes(k)){e.preventDefault();closeMore();go(index+1);}else if(['arrowleft','arrowup','pageup','backspace'].includes(k)){e.preventDefault();closeMore();go(index-1);}else if(k==='home'){e.preventDefault();go(0);}else if(k==='end'){e.preventDefault();go(slides.length-1);}else if(k==='n')toggleNotes();else if(k==='o')overview();else if(k==='f')fullscreen();else if(k==='h')document.body.classList.toggle('clean');});
-let touch=null;document.getElementById('frame').addEventListener('touchstart',e=>{if(e.target.closest('button,a'))return;touch=e.changedTouches[0].clientX;},{passive:true});document.getElementById('frame').addEventListener('touchend',e=>{if(touch===null)return;const d=e.changedTouches[0].clientX-touch;touch=null;if(Math.abs(d)>55)go(index+(d<0?1:-1));},{passive:true});
-size();go((Number(location.hash.slice(1))||1)-1);
-</script></body></html>
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1c2837">
+<title>選擇投影片｜教學與講演簡報</title>
+<style>
+:root{--bg:#182436;--ink:#fbf5ed;--gold:#debf93;--muted:#b7c2cd}
+*{box-sizing:border-box}
+body{margin:0;background:#172335;color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 78% 8%,#5b476b66,transparent 49%),radial-gradient(ellipse at 12% 95%,#437e6766,transparent 55%);pointer-events:none}
+header{padding:45px clamp(22px,5vw,82px) 0;max-width:1560px;margin:0 auto}
+.brand{display:flex;gap:14px;align-items:center;color:#d6cbbb}
+.brand-mark{width:47px;height:47px;border:1px solid #c8ad8599;border-radius:14px;display:grid;place-items:center;color:#e4c49b;font:800 23px Georgia}
+.brand strong{font-size:16px;letter-spacing:.07em}
+.brand small{display:block;font-size:12px;letter-spacing:.13em;color:#aeb9c3;margin-top:3px}
+main{max-width:1560px;margin:0 auto;padding:54px clamp(22px,5vw,82px) 85px}
+.eyebrow{color:#dcb68f;letter-spacing:.18em;font-weight:800;font-size:14px;margin:0 0 15px}
+h1{font:800 clamp(48px,5vw,85px)/1.18 "Noto Serif TC","Noto Serif CJK TC",serif;margin:0 0 22px;letter-spacing:.01em}
+.subhead{font-size:20px;color:#bac4cf;line-height:1.9;max-width:900px;margin:0 0 52px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:20px}
+.section-head h2{font-size:23px;font-weight:800;margin:0}
+.count{font-size:13px;color:#b7bfcb}
+.decks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}
+.deck{display:block;text-decoration:none;color:inherit;border:1px solid #b1aa9e63;background:#26354b;border-radius:24px;overflow:hidden;box-shadow:0 18px 45px #0003;transition:transform .25s,border-color .25s,box-shadow .25s;outline-offset:5px}
+.deck:hover,.deck:focus-visible{transform:translateY(-6px);border-color:#e7c7a0;box-shadow:0 28px 55px #0006}
+.visual{position:relative;min-height:268px;display:flex;align-items:center;justify-content:center;overflow:hidden;isolation:isolate}
+.deck.rose .visual{background:radial-gradient(circle at 68% 22%,#b38a9d,#654960 55%,#493a57)}
+.deck.green .visual{background:radial-gradient(circle at 68% 22%,#6aa28a,#255346 60%,#203b3b)}
+.deck:not(.rose):not(.green) .visual{background:linear-gradient(130deg,#74627c,#394c6b)}
+.visual::before{content:"";position:absolute;z-index:-1;width:410px;height:410px;border:1px solid #ffffff3c;border-radius:50%;right:-130px;top:-150px}
+.bigletters{font:900 110px Georgia,serif;color:#fff3e8;text-shadow:0 15px 40px #24203433;letter-spacing:.01em}
+.deck.green .bigletters{font-size:104px}
+.illustration{position:absolute;width:70%;height:108%;object-fit:contain;object-position:center bottom;right:-9%;bottom:-19%;filter:drop-shadow(0 14px 15px #0004);pointer-events:none}
+.illustration.prince{height:110%;width:48%;right:8%;bottom:-19%}
+.visual .series{position:absolute;top:22px;left:24px;font:800 13px Georgia,sans-serif;letter-spacing:.12em;color:#ffffffcc}
+.visual .symbol{position:absolute;left:33px;bottom:19px;font-size:28px;color:#ffedc4a8}
+.deck-body{padding:26px 30px 31px;background:#fff9f1;color:#2a3441;min-height:240px}
+.deck-body .cat{color:#9c6480;font-size:12px;font-weight:900;letter-spacing:.14em;margin-bottom:12px}
+.deck.green .deck-body .cat{color:#388069}
+.deck-body h3{font:800 34px/1.34 "Noto Serif TC",serif;margin:0 0 8px}
+.deck-body .subtitle{font-size:17px;font-weight:800;color:#5b5e70;margin:0 0 17px}
+.deck-body p{font-size:15px;line-height:1.8;color:#777d85;min-height:55px;margin:0 0 18px}
+.open-line{display:flex;justify-content:space-between;align-items:center;gap:15px;font-size:14px;font-weight:900;color:#776081;border-top:1px solid #e5d9cb;padding-top:17px}
+.deck.green .open-line{color:#43806f}
+footer{max-width:1560px;margin:0 auto;padding:0 clamp(22px,5vw,82px) 38px;color:#9eaab6;font-size:13px;line-height:1.85}
+.empty{border:1px dashed #b7b1bb77;border-radius:17px;padding:28px}
+@media(max-width:910px){.decks{grid-template-columns:1fr}.visual{min-height:225px}.subhead{font-size:17px}main{padding-top:42px}.deck-body{min-height:0}}
+@media(max-width:540px){.visual{min-height:200px}.bigletters{font-size:75px}.deck.green .bigletters{font-size:72px}.deck-body{padding:22px}.deck-body h3{font-size:28px}.illustration.prince{height:125%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="brand-mark">P</div><div><strong>板橋國中｜高勳頊老師</strong><small>PRESENTATION LIBRARY</small></div></div></header>
+<main>
+  <p class="eyebrow">PRESENTATION SELECTOR</p>
+  <h1>選擇投影片</h1>
+  <p class="subhead">從這裡開啟不同的教學與講演簡報。每份講稿都會保留為獨立頁面，可直接投影、全螢幕播放及返回選單。</p>
+  <div class="section-head"><h2>簡報資料庫</h2><span class="count" id="count"></span></div>
+  <div id="decks" class="decks" aria-label="可選擇的投影片"></div>
+</main>
+<footer>所有簡報皆為獨立 HTML。新增簡報只需放入 decks 資料夾，再登記於 decks/catalog.js，原有簡報不會被覆蓋。</footer>
+<script src="./decks/catalog.js?v=1"></script>
+<script>
+(function(){
+"use strict";
+const list=document.getElementById("decks");
+const decks=Array.isArray(window.PPT_DECKS)?window.PPT_DECKS:[];
+const text=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;n.textContent=value||"";return n};
+const makeDeck=function(d){
+ if(!d||typeof d.path!=="string"||!/^\.\/decks\/[\w-]+\.html$/.test(d.path))return null;
+ const a=document.createElement("a");a.href=d.path;a.className="deck "+(d.color==="rose"?"rose":d.color==="green"?"green":"");
+ a.setAttribute("aria-label","開啟："+d.title);
+ const art=text("div","visual","");
+ art.append(text("span","series",d.eyebrow||"PRESENTATION"),text("span","bigletters",d.id==="set"?"SET":d.id==="dodo"?"AI":"PPT"),text("span","symbol",d.id==="set"?"✦":"✧"));
+ if(d.id==="set"){
+  const img=document.createElement("img");
+  img.src="https://kaoelvmpvm.github.io/menstrual-equity-set-jh/assets/characters/prince.png";
+  img.alt="";img.decoding="async";img.loading="lazy";img.className="illustration prince";art.append(img);
+ }
+ const body=text("div","deck-body","");
+ body.append(text("div","cat",d.eyebrow||"簡報"),text("h3","",d.title),text("div","subtitle",d.subtitle),text("p","",d.desc));
+ const open=text("div","open-line","");open.append(text("span","","開啟這份簡報"),text("span","","↗"));
+ body.append(open);a.append(art,body);return a;
+};
+const valid=decks.map(makeDeck).filter(Boolean);
+valid.forEach(a=>list.append(a));
+document.getElementById("count").textContent="目前共 "+valid.length+" 份簡報";
+if(!valid.length)list.append(text("div","empty","尚未建立簡報。請確認 decks/catalog.js 是否正確載入。"));
+})();
+</script>
+</body>
+</html>
