@@ -58,7 +58,29 @@ window.addEventListener("keydown",e=>{
 let touch=null;
 $("frame").addEventListener("touchstart",e=>{if(e.target.closest("button,a,textarea,input"))return;touch=e.changedTouches[0].clientX},{passive:true});
 $("frame").addEventListener("touchend",e=>{if(touch==null)return;const dx=e.changedTouches[0].clientX-touch;touch=null;if(Math.abs(dx)>60)show(current+(dx<0?1:-1))},{passive:true});
-document.querySelectorAll(".set-qr").forEach(img=>{img.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeoAAAHqCAIAAABED5ptAAAJwElEQVR42u3dsZLjRhBEwaOC///LlK0zeFKMeqt6kOnvEgTAF+N09Ovz+fwCYJu/3AIA+QZAvgGQbwD5BkC+AZBvAPkGQL4BkG8A5BtAvgGQbwDkG0C+AZBvAOQbQL4BkG8A5BsA+QaQbwDkGwD5BpBvAOQbAPkGkG8A5BsA+QZAvgHkGwD5BkC+AeQbAPkGQL4B5BsA+QZg0jv1wa/X67Jb+fl8hr7v9//c+QRT13zfVc397cbfwsbfvtM3APININ8AyDcA8g0g3wDINwDyDSDfACzy7rysjXOGnZ87dyc7ZwXnvu/c05/7z3PPyG/f6RsA+QaQbwDkGwD5BkC+AeQbAPkGQL4BrvTeeNGpKbXUf+7clPj9bzvn/e6bb0xNqD7tCTp9AyDfAPINgHwDIN8AyDeAfAMg3wDIN8BDvN2CnzE3wThnbiPl3J2c+75zV5WabsXpGwD5BkC+AeQbAPkGQL4B5BsA+QZAvgH4janLCnMbKTuvqnOvYOf0Y2pPZuckME7fAPINgHwDIN8A8g2AfAMg3wDyDYB8AzBq5dTlfRNfczN7c/cqNSma2kg5dzdO/vPcnex860x7On0DyDcA8g2AfAPINwDyDYB8A8g3APINwKjSqcu56bj7pHZOzn1uajNk6q1L7RTduGEVp28A+QZAvgGQbwD5BkC+AZBvAPkGQL4BGPWyO27BQwpN1p1c1Xcb37q5acDUPtL7npHTNwDyDYB8AyDfAPINgHwDIN8A8g2AfANw6MKpy9ScYeo/p3YDpqY9U3eyc29k552c+9zUG5t6Ck7fABeSbwD5BkC+AZBvAPkGQL4BkG8A+QagW2zqcm7GqXMz5H134+SqTu5Gaj/nifu2Wd63f7Xz+Tp9A1xIvgHkGwD5BkC+AeQbAPkGQL4B5BuAbqW7LlNTiCc6N1KeXPPJM0rNzpnZ+5nf4H1zlRu3/jp9A6wk3wDyB8AyDfAPINgHwDIN8A8g1At3fqg81lNXzf1FPo3P3Y+W507kFVBqdvAOQbQL4BkG8A5BsA+QaQbwDkGwD5BrhSbOqyc7Pc3JRa6vtu3OC3cd4vtZ9z7o3dOO3ZOUfq9A2AfAPINwDyDYB8A8g3APINgHwDyDcAi7w2TiKlJtxOrqpzZq/zTs5dc+pOzj39jd+oszkbr9npG2Al+QaQbwDkGwD5BpBvAOQbAPkGkG8Aur2eNgGVmiXrnGG7b97P9/2Z/zz36567zxuvyukb4ELyDSDfAMg3APININ8AyDcA8g0g3wB0e7sF/97TZjJPPnduvnHuP89d1fc7uXHmdm7OsPNtd/oGQL4B5BsA+QZAvgGQbwD5BkC+AZBvgIcwdfkfdM77peYq5665cwY19V6l5hvnrrnzCdp1CYB8AyDfAPINgHwDIN8A8g2AfAMg3wD8Ck5dbpysm5tRvG+SMDXPmXrrTu7G3DdKPd/Oa049fadvAOQbQL4BkG8A5BtAvgGQbwDkG0C+AVikdNdlasviyVV1zmSe/OeTz+2cBuycnbvv+3a+7anmOH0DIN8A8g2AfAMg3wDyDYB8AyDfAPINwCKlU5ep/Y1zWyU3TgOmZl83znN2vpOpa+6cbd64n9PpG+BC8g0g3wDINwDyDSDfAMg3APININ8AdHul5rL+cFmV834n/7n08VdOuM1dc+qtm3tzOt9YV+X0DYB8A8g3APINgHwDyDcA8g2AfAMg3wBLxXZdzs37zX3u3Pc9MTcbmZpv7NzQ2HnNnb/fp33f1NN3+gZYSb4B5BsA+QZAvgHkGwD5BkC+AeQbgG6xXZdze+dsLPy/PnfjFGJqmrfzzUl9387fgl2XAMg3APININ8AyDcA8g2AfAPINwDyDcAfrZy6nJPadXnftNh9OzY3TsbO/Qbvm+fcuK3U6RtgJfkGkG8A5BsA+QaQbwDkGwD5BpBvALq9Oy8rNdN13za8k+/buevy5HPnvtH3v904OTn3uRvf587fvtM3wEryDSDfAMg3APININ8AyDcA8g0g3wB0e2+86M75xtQcWmpCde5upOYbN+4FnXsK922G3FgVp2+AC8k3gHwDIN8AyDeAfAMg3wDIN4B8A9Dtdd8EY2qfYWoz5MarOnmCc3ej8xulfmX3bYa87/k6fQOsJN8A8g2AfAMg3wDyDYB8AyDfAPINQLfY1OXGTXrffZ+86tyVt/EJds5kdj7fuc2fJ/d548ZRuy4BkG8A+QZAvgGQbwDkG0C+AZBvAOQb4CHenZfVOePUOWfoGTVcc+ck4dOewsZJUadvgMeRbwD5BkC+AZBvAPkGQL4BkG8A+Qag23vjRc9NP26cYZvb7ti5j3TjpsSnzWSm3pzU9k6nbwDkG0C+AZBvAOQbQL4BkG8A5BsA+Qa4xtst+BmdezI3zuzNfaO5/7xxTjj1fVNv7MaJa6dvgJXkG0C+AZBvAOQbQL4BkG8A5BtAvgHoZuryh2yc6OvcopnaG7nx6c9NmZ583zkbpz2dvgEeR74B5BsA+QZAvgHkGwD5BkC+AeQbgG4rpy43bqU7kZpRnPvck+f7/T+npuM2bg2dewobf/udT9DpG+BC8g0g3wDINwDyDSDfAMg3APININ8AdCudukzNdKU8bUNj59NPzRl2bsLsvM8bN3A6fQMg3wDyDYB8AyDfAPINgHwDIN8A8g3AIq+n7Y0EcPoGQL4BkG8A+QZAvgGQbwD5BkC+AZBvAOQbQL4BkG8A5BtAvgGQbwDkG0C+AZBvAOQbAPkGkG8A5BsA+QaQbwDkGwD5BkC+AeQbAPkGQL4B5BsA+QZAvgHkGwD5BkC+AZBvAPkGQL4B+KO/AQ3c1PKDip4UAAAAAElFTkSuQmCC"});
+/* 內嵌 SET QR：49×49 模組，含四格留白；不用依賴第三方 QR 服務。 */
+const qrRows="0000000000000|0000000000000|0000000000000|0000000000000|01fd8210af7f0|0105e163e4410|0174548e995d0|017513b9c95d0|0175b53cec5d0|010566cd3b410|01fd5555557f0|000053038c000|0024bd15623b0|01a8d64f194f0|00ddf267829c0|01393b7e34a40|00342305ab480|0062cc3972820|00954e4e48630|0092abff2e500|0096875049230|015246db58650|01c5b3cb48df0|0108b77860290|00ec0a2798c60|0171d4a219c70|01bcca1797360|01f1614b26e40|017d6a65b9eb0|01035bb1ca080|00d5299305830|0098666739220|01aeef524d820|001973c430c70|013e6e86f1330|00304bfb4e980|012e87e963f60|00016ca35f170|01fc6f9a555a0|01040c1365170|0174342595fb0|0175e85286d00|0174aee6521d0|0104f7b75de20|01fc327329ba0|0000000000000|0000000000000|0000000000000|0000000000000".split("|");
+document.querySelectorAll(".set-qr").forEach(function(host){
+ const ns="http://www.w3.org/2000/svg";
+ const svg=document.createElementNS(ns,"svg");
+ svg.setAttribute("viewBox","0 0 49 49");
+ svg.setAttribute("xmlns",ns);
+ svg.setAttribute("shape-rendering","crispEdges");
+ svg.setAttribute("role","img");
+ svg.setAttribute("aria-label","掃描進入王子脫魯記 SET 遊戲");
+ const white=document.createElementNS(ns,"rect");
+ white.setAttribute("width","49");white.setAttribute("height","49");white.setAttribute("fill","#ffffff");
+ const black=document.createElementNS(ns,"path");
+ let d="";
+ qrRows.forEach(function(row,y){
+  const bits=BigInt("0x"+row);
+  for(let x=0;x<49;x++){
+   if((bits >> BigInt(48-x)) & 1n) d+="M"+x+" "+y+"h1v1h-1z";
+  }
+ });
+ black.setAttribute("d",d);black.setAttribute("fill","#141414");
+ svg.append(white,black);host.append(svg);
+});
 let seconds=1200,initial=1200,running=false,stopAt=0,interval=null;
 function paintClock(){
  $("clock").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0");
