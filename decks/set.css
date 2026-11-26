@@ -22,12 +22,28 @@ button,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit}[hidden
 .hero h1{font-size:98px;line-height:1.13}
 .hero p{font-size:35px;line-height:1.6;color:#e5d9dc}
 .hero .subtitle{letter-spacing:.15em;color:#e8c397;font-size:22px;margin-bottom:25px}
-.cast-hero{position:relative;height:590px}
-.cast-hero img{position:absolute;object-fit:contain;filter:drop-shadow(0 16px 22px #0004);height:420px;animation:float 5s ease-in-out infinite}
-.cast-hero img:nth-child(1){left:0;top:0;height:480px;z-index:4}
-.cast-hero img:nth-child(2){left:40%;top:8%;height:410px;z-index:3;animation-delay:-1s}
-.cast-hero img:nth-child(3){left:22%;top:25%;height:440px;z-index:2;animation-delay:-2s}
-.cast-hero img:nth-child(4){left:64%;top:30%;height:355px;z-index:1;animation-delay:-3s}
+/* 首頁角色立繪：2×2 獨立格位，保證互不重疊。 */
+.cast-hero{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ grid-template-rows:repeat(2,minmax(0,1fr));
+ gap:24px;
+ align-items:center;
+ justify-items:center;
+ height:590px;
+ padding:8px;
+}
+.cast-hero img{
+ display:block;
+ position:static;
+ width:100%;
+ max-width:248px;
+ height:258px;
+ object-fit:contain;
+ object-position:center center;
+ filter:drop-shadow(0 12px 18px #0004);
+ animation:none;
+}
 .castcards{display:grid;grid-template-columns:repeat(4,1fr);gap:23px;margin-top:25px}
 .castcard{background:#fffdf9;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px #4b35401b}
 .castcard img{background:linear-gradient(145deg,#f2e1dd,#e8e8ef);display:block;height:370px;width:100%;object-fit:contain;object-position:center bottom}
