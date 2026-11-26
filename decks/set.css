@@ -119,3 +119,7 @@ dialog textarea{width:100%;height:250px;padding:15px;border:1px solid #c4b3b7;bo
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 @media(max-width:700px){#controls{padding:5px;gap:4px}#controls button{font-size:12px;padding:7px 10px}#counter{min-width:54px}}
 @media print{html,body{height:auto;overflow:visible;background:#fff}#frame{position:static;transform:none!important;width:1600px;height:auto}.slide{position:relative;display:block!important;width:1600px;height:900px;break-after:page}#controls,#progress,#notes,dialog{display:none!important}}
+
+/* Offline SVG QR modules: crisp at both 1600×900 projection and smaller screens. */
+.set-qr,.set-qr svg{display:block;width:100%;height:100%}
+.set-qr svg{shape-rendering:crispEdges;image-rendering:pixelated}
